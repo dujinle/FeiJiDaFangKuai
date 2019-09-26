@@ -6,7 +6,7 @@ if (typeof wx !== 'undefined') {
     WxGlobal.initOnEnter();
 }
 
-let ThirdAPI = {
+var ThirdAPI = {
     "loadLocalData_storageName": 'TanKeDaFangKuai', //分数和金币相关
 
 	//加载本地分数等数据并填充到全局变量
@@ -47,7 +47,8 @@ let ThirdAPI = {
         //云端数据再存储一份在本地
         try {
 			var dataDic = {
-				"runTime":GlobalData.runTime
+				runTime:GlobalData.runTime,
+				gameConf:GlobalData.gameConf
 			};
 			console.log('runTime',dataDic);
             let data = JSON.stringify(dataDic);

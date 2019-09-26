@@ -11,6 +11,7 @@ GlobalData = {
 	ZhangAiWu:[330,198,66,-66,-198,-330,-320],
 	ParticleConf:[2,3,4,5,6,7,8],
 	gameConf:{
+		curScore:0,
 		shootNum:1,
 		shootSpeed:0.5,
 		shootPowder:1,
@@ -41,5 +42,7 @@ GlobalData = {
 			power:0.8,
 			shootNum:1
 		}
-	}
+	},
+	cdnShareImages:["res/raw-assets/02/0275e94c-56a7-410f-bd1a-fc7483f7d14a.png"],
+	cdnTexts:["你介意男生玩这个游戏吗?"]
 };

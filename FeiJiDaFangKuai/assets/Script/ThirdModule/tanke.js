@@ -22,7 +22,7 @@ cc.Class({
 	moveDown(dt){
 		var self = this;
 		this.node.y -= this.downSpeed * dt;
-		if(this.node.y <= -358){
+		if(this.node.y <= -358 || this.node.y >= 358){
 			console.log('touch bottom');
 			GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.Bomb);
 			this.collider.enabled = false;
@@ -32,7 +32,9 @@ cc.Class({
 			this.sprite.active = false;
 			setTimeout(function(){
 				GlobalData.game.finishGame.getComponent('FinishGame').show();
-				self.node.destroy();
+				if(self.node.isValid){
+					self.node.destroy();
+				}
 			},500);
 		}
 	},
@@ -73,7 +75,9 @@ cc.Class({
 			this.sprite.active = false;
 			setTimeout(function(){
 				GlobalData.game.finishGame.getComponent('FinishGame').show();
-				self.node.destroy();
+				if(self.node.isValid){
+					self.node.destroy();
+				}
 			},500);
 		}
     },

@@ -32,6 +32,11 @@ cc.Class({
 		};
 		ThirdAPI.getRank(param);
 		this.reStartSprite.active = true;
+		if(GlobalData.runTime.maxScore < GlobalData.runTime.curScore){
+			GlobalData.runTime.maxScore = GlobalData.runTime.curScore
+		}
+		GlobalData.gameConf.curScore += GlobalData.runTime.curScore;
+		ThirdAPI.updataGameInfo();
 	},
 	hide(){
 		this.isDraw = false;
@@ -43,8 +48,9 @@ cc.Class({
 	},
 	restartButtonCb(){
 		GlobalData.game.audioManager.getComponent("AudioManager").play(GlobalData.AudioManager.ButtonClick);
+		GlobalData.game.startGame.getComponent('StartGame').onShow();
 		GlobalData.game.mainGame.getComponent('MainGame').destroyGame();
-		GlobalData.game.mainGame.getComponent('MainGame').initGame();
+		GlobalData.game.mainGame.active = false;
 		this.hide();
 	},
 	shareToFriends(){

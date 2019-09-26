@@ -1,3 +1,4 @@
+var ThirdAPI = require('ThirdAPI');
 cc.Class({
     extends: cc.Component,
 
@@ -6,8 +7,6 @@ cc.Class({
 		soundOffNode:cc.Node,
 		scoreLabel:cc.Node,
     },
-
-    // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
@@ -23,7 +22,7 @@ cc.Class({
 			this.soundOnNode.active = false;
 			this.soundOffNode.active = true;
 		}
-		this.scoreLabel.getComponent(cc.Label).string = GlobalData.runTime.maxScore;
+		this.scoreLabel.getComponent(cc.Label).string = GlobalData.gameConf.curScore;
 	},
     startButtonCb(event){
 		this.node.active = false;
@@ -43,6 +42,7 @@ cc.Class({
 		}
 	},
     shareButtonCb(){
+		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
 		var param = {
 			type:null,
 			arg:null,

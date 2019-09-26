@@ -1,3 +1,4 @@
+var ThirdAPI = require('ThirdAPI');
 cc.Class({
     extends: cc.Component,
 
@@ -9,7 +10,7 @@ cc.Class({
 		audioManager:cc.Node,
     },
 	onLoad: function () {
-		//ThirdAPI.loadLocalData();
+		ThirdAPI.loadLocalData();
 		this.loadDataSync();
 		GlobalData.game = this;
 		//ThirdAPI.loadCDNData();
