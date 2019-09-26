@@ -1,0 +1,181 @@
+2019-01-05T13:48:40.819Z - normal: Load ~/.CocosCreator/settings.json
+2019-01-05T13:48:40.824Z - normal: checking language setting...
+2019-01-05T13:48:40.825Z - normal: Language: zh
+2019-01-05T13:48:43.054Z - success: protocol editor-framework registered
+2019-01-05T13:48:43.054Z - success: protocol app registered
+2019-01-05T13:48:43.054Z - success: protocol theme registered
+2019-01-05T13:48:43.054Z - success: protocol packages registered
+2019-01-05T13:48:43.055Z - success: protocol unpack registerred
+2019-01-05T13:48:43.055Z - success: protocol disable-commonjs registerred
+2019-01-05T13:48:43.151Z - normal: connected!
+2019-01-05T13:48:43.153Z - normal: Check project E:\GitHub\100Balls\wx-open-data-project
+2019-01-05T13:48:43.157Z - normal: Initializing Cocos2d
+2019-01-05T13:48:43.476Z - normal: Initializing Asset Database
+2019-01-05T13:48:43.536Z - success: protocol uuid registerred
+2019-01-05T13:48:43.537Z - success: protocol db registerred
+2019-01-05T13:48:43.537Z - success: protocol thumbnail registerred
+2019-01-05T13:48:43.537Z - normal: Loading editor/builtin packages
+2019-01-05T13:48:43.569Z - success: anysdk loaded
+2019-01-05T13:48:43.747Z - success: assets loaded
+2019-01-05T13:48:43.750Z - success: builder loaded
+2019-01-05T13:48:43.754Z - success: cocos-analytics loaded
+2019-01-05T13:48:43.759Z - success: console loaded
+2019-01-05T13:48:43.816Z - success: fb-instant-games loaded
+2019-01-05T13:48:43.820Z - success: hierarchy loaded
+2019-01-05T13:48:43.824Z - success: inspector loaded
+2019-01-05T13:48:43.825Z - success: keystore loaded
+2019-01-05T13:48:43.829Z - success: node-library loaded
+2019-01-05T13:48:43.831Z - success: package-asset loaded
+2019-01-05T13:48:43.834Z - success: preferences loaded
+2019-01-05T13:48:43.837Z - success: project-exporter loaded
+2019-01-05T13:48:43.860Z - success: project-importer loaded
+2019-01-05T13:48:43.863Z - success: project-settings loaded
+2019-01-05T13:48:43.867Z - success: ui-kit loaded
+2019-01-05T13:48:43.869Z - success: ui-grid loaded
+2019-01-05T13:48:43.874Z - success: scene loaded
+2019-01-05T13:48:43.875Z - success: sprite-editor loaded
+2019-01-05T13:48:43.880Z - success: store loaded
+2019-01-05T13:48:43.885Z - success: timeline loaded
+2019-01-05T13:48:43.886Z - normal: Loading builtin packages
+2019-01-05T13:48:43.890Z - success: asset-db-debugger loaded
+2019-01-05T13:48:43.892Z - success: code-editor loaded
+2019-01-05T13:48:43.893Z - success: color-picker loaded
+2019-01-05T13:48:43.896Z - success: package-manager loaded
+2019-01-05T13:48:43.899Z - success: qqplay-adapter loaded
+2019-01-05T13:48:43.905Z - success: sdkbox loaded
+2019-01-05T13:48:43.909Z - success: tester loaded
+2019-01-05T13:48:43.911Z - success: ui-kit-preview-extra loaded
+2019-01-05T13:48:43.913Z - success: ui-kit-preview loaded
+2019-01-05T13:48:43.916Z - success: ui-tree loaded
+2019-01-05T13:48:43.917Z - success: weapp-adapter loaded
+2019-01-05T13:48:45.627Z - normal: Initializing project E:\GitHub\100Balls\wx-open-data-project
+2019-01-05T13:48:45.631Z - normal: Loading packages
+2019-01-05T13:48:45.642Z - failed: Failed to load package at C:\Users\Administrator\.CocosCreator\packages\2016-10-13base: Failed to load main.js: Error: Cannot find module 'base64-node'
+    at Module._resolveFilename (module.js:470:15)
+    at Function.Module._resolveFilename (D:\CocosCreator193\resources\electron.asar\common\reset-search-paths.js:35:12)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (C:\Users\Administrator\.CocosCreator\packages\2016-10-13base\main.js:2:14)
+    at Object.<anonymous> (C:\Users\Administrator\.CocosCreator\packages\2016-10-13base\main.js:30:3)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+2019-01-05T13:48:45.645Z - success: package.json loaded
+2019-01-05T13:48:45.645Z - normal: Watching packages
+2019-01-05T13:48:46.145Z - normal: Run Application
+2019-01-05T13:48:47.796Z - success: preview server running at http://localhost:7458
+2019-01-05T13:48:54.322Z - normal: 1.9.3
+2019-01-05T13:52:12.164Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/res/rank_line.png.meta
+2019-01-05T14:12:42.662Z - normal: Start building with options : {
+  "androidStudio": true,
+  "apiLevel": "",
+  "appABIs": [],
+  "appKey": "",
+  "appSecret": "",
+  "buildPath": "E:\\GitHub\\100Balls\\wx-open-data-project\\build",
+  "debug": false,
+  "dest": "E:\\GitHub\\100Balls\\wx-open-data-project\\build\\wechatgame",
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [
+    "WebGL Renderer",
+    "LabelOutline",
+    "Graphics",
+    "ParticleSystem",
+    "TiledMap",
+    "Spine Skeleton",
+    "DragonBones",
+    "RichText",
+    "MotionStreak",
+    "ProgressBar",
+    "ScrollBar",
+    "Toggle",
+    "PageView",
+    "PageViewIndicator",
+    "Slider",
+    "EditBox",
+    "VideoPlayer",
+    "WebView",
+    "Audio",
+    "AudioSource",
+    "Animation",
+    "Collider",
+    "Physics",
+    "NodePool",
+    "StudioComponent",
+    "Intersection",
+    "Native NetWork"
+  ],
+  "fb-instant-games": {},
+  "includeAnySDK": false,
+  "includeEruda": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": true,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.wx-sub-test",
+  "platform": "wechatgame",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "privateKey": "",
+  "qqplay": {
+    "orientation": "portrait"
+  },
+  "renderMode": "1",
+  "scenes": [
+    "088db947-d2bf-4c47-b64f-f30bc4bc0faa"
+  ],
+  "sourceMaps": false,
+  "startScene": "088db947-d2bf-4c47-b64f-f30bc4bc0faa",
+  "template": "link",
+  "title": "wx-open-data-project",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "buildsub": true,
+    "hasSubdomain": true,
+    "isSubdomain": true,
+    "orientation": "portrait"
+  },
+  "xxteaKey": "0f6c60db-2545-4d",
+  "zipCompressJs": true,
+  "project": "E:\\GitHub\\100Balls\\wx-open-data-project",
+  "projectName": "wx-open-data-project",
+  "debugBuildWorker": false
+}
+2019-01-05T14:12:42.667Z - normal: Building E:\GitHub\100Balls\wx-open-data-project
+2019-01-05T14:12:42.667Z - normal: Destination E:\GitHub\100Balls\wx-open-data-project\build\wx-open-data-project
+2019-01-05T14:12:43.937Z - normal: Delete E:\GitHub\100Balls\wx-open-data-project\build\wx-open-data-project\**\*
+2019-01-05T14:13:18.157Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:23932
+2019-01-05T14:13:18.202Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:23934
+2019-01-05T14:13:18.203Z - warn: Error: ipc timeout. message: scene:query-node, session: scene@renderer:23935
+2019-01-05T14:13:21.051Z - normal: Compiled project javascript file successfully
+2019-01-05T14:13:21.052Z - normal: Start building assets
+2019-01-05T14:13:21.052Z - normal: Start spawn build-worker
+2019-01-05T14:13:22.061Z - normal: Finish spawn build-worker
+2019-01-05T14:13:22.061Z - normal: Start init build-worker
+2019-01-05T14:13:25.246Z - normal: 1.9.3
+2019-01-05T14:13:25.377Z - normal: Finish init build-worker
+2019-01-05T14:13:25.377Z - normal: Start build-assets in worker
+2019-01-05T14:13:25.691Z - normal: Finish build-assets in worker
+2019-01-05T14:13:25.702Z - normal: Finish building assets
+2019-01-05T14:13:25.718Z - normal: Start building raw assets
+2019-01-05T14:13:25.724Z - normal: Start building plugin scripts
+2019-01-05T14:13:25.801Z - normal: Finish building raw assets
+2019-01-05T14:13:25.810Z - normal: Generating main.js from D:\CocosCreator193\resources\static\build-templates\shares\main.js
+2019-01-05T14:13:27.878Z - normal: Built to "E:\GitHub\100Balls\wx-open-data-project\build\wechatgame" successfully
+2019-01-09T09:26:11.640Z - info: shutdown preview server

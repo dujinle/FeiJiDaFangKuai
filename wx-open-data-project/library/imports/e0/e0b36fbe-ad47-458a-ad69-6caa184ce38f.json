@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "surpassBoard",
+    "texture": "9e90fd6c-679d-4df5-9c9b-bb4537efa4b9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      140,
+      97
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      140,
+      97
+    ],
+    "capInsets": [
+      41,
+      0,
+      41,
+      0
+    ]
+  }
+}

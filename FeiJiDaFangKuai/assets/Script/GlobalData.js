@@ -1,0 +1,45 @@
+GlobalData = {
+	game:null,
+	AudioManager:{
+		ButtonClick:0,
+		Shoot:1,
+		Bomb:2,
+		Prop:3,
+		AudioEnginMore:8,
+		AudioPlays:[]
+	},
+	ZhangAiWu:[330,198,66,-66,-198,-330,-320],
+	ParticleConf:[2,3,4,5,6,7,8],
+	gameConf:{
+		shootNum:1,
+		shootSpeed:0.5,
+		shootPowder:1,
+		buttleSpeed:500,
+		propUps:1,
+		propPower:1,
+	},
+	runTime:{
+		AudioPlayNum:0,
+		audioSupport:1,
+		shootNum:1,
+		shootSpeed:0.5,
+		shootPowder:1,
+		buttleSpeed:500,
+		maxScore:0,
+		curScore:0,
+		gameStep:1,
+		propType:1,//1 ups 2 power
+		particleSkin:0
+	},
+	cdnParam:{
+		stepNum:4,
+		propNum:4,
+		xingNum:6,
+		propRate:0.5,
+		wuxingRate:{
+			ups:0.4,
+			power:0.8,
+			shootNum:1
+		}
+	}
+};

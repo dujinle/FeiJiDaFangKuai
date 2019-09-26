@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cutLine",
+    "texture": "85d174b8-fdfa-40a8-98fb-66469f871d63",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      584,
+      8
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      584,
+      8
+    ]
+  }
+}
