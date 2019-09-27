@@ -7,6 +7,7 @@ cc.Class({
 		mainGame:cc.Node,
 		finishGame:cc.Node,
 		rankGame:cc.Node,
+		helpGame:cc.Node,
 		audioManager:cc.Node,
     },
 	onLoad: function () {
@@ -18,6 +19,7 @@ cc.Class({
 		this.mainGame.active = false;
 		this.finishGame.active = false;
 		this.rankGame.active = false;
+		this.helpGame.active = false;
     },
 	loadDataSync(){
 		var self = this;

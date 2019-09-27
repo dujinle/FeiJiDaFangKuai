@@ -6,6 +6,13 @@ cc.Class({
 		soundOnNode:cc.Node,
 		soundOffNode:cc.Node,
 		scoreLabel:cc.Node,
+		helpNode:cc.Node,
+		upLabel:cc.Node,
+		upLevel:cc.Node,
+		upBtn:cc.Node,
+		powerLabel:cc.Node,
+		powerLevel:cc.Node,
+		powerBtn:cc.Node,
     },
 
     onLoad () {
@@ -15,6 +22,7 @@ cc.Class({
 	},
 	onShow(){
 		this.node.active = true;
+		this.helpNode.active = false;
 		if(GlobalData.runTime.audioSupport == 1){
 			this.soundOnNode.active = true;
 			this.soundOffNode.active = false;
@@ -23,9 +31,46 @@ cc.Class({
 			this.soundOffNode.active = true;
 		}
 		this.scoreLabel.getComponent(cc.Label).string = GlobalData.gameConf.curScore;
+		this.initProp();
+	},
+	initProp(){
+		this.upLevel.getComponent(cc.Label).string = GlobalData.gameConf.propUps;
+		this.powerLevel.getComponent(cc.Label).string = GlobalData.gameConf.propPower;
+		this.upLabel.getComponent(cc.Label).string = GlobalData.gameConf.propUps * 190;
+		this.powerLabel.getComponent(cc.Label).string = GlobalData.gameConf.propPower * 190;
+		if(GlobalData.gameConf.curScore >= GlobalData.gameConf.propPower * 190){
+			this.powerBtn.getComponent(cc.Button).interactable = true;
+		}else{
+			this.powerBtn.getComponent(cc.Button).interactable = false;
+		}
+		if(GlobalData.gameConf.curScore >= GlobalData.gameConf.propUps * 190){
+			this.upBtn.getComponent(cc.Button).interactable = true;
+		}else{
+			this.upBtn.getComponent(cc.Button).interactable = false;
+		}
+	},
+	upAdd(){
+		GlobalData.gameConf.curScore -= GlobalData.gameConf.propUps * 190;
+		GlobalData.gameConf.propUps += 1;
+		this.initProp();
+	},
+	powerAdd(){
+		GlobalData.gameConf.curScore -= GlobalData.gameConf.propPower * 190;
+		GlobalData.gameConf.propPower += 1;
+		this.initProp();
+	},
+	helpShow(){
+		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
+		GlobalData.game.helpGame.active = true;
 	},
     startButtonCb(event){
 		this.node.active = false;
+		GlobalData.runTime.gameStep = 1;
+		GlobalData.runTime.curScore = 0;
+		GlobalData.runTime.shootNum = GlobalData.gameConf.shootNum;
+		GlobalData.runTime.shootSpeed = GlobalData.gameConf.shootSpeed;
+		GlobalData.runTime.shootPowder = GlobalData.gameConf.shootPowder;
+		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed;
 		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
 		GlobalData.game.mainGame.active = true;
 		GlobalData.game.mainGame.getComponent('MainGame').initGame();
@@ -86,5 +131,7 @@ cc.Class({
 			console.log(err);
 		}
 	},
-    // update (dt) {},
+    update (dt) {
+		this.scoreLabel.getComponent(cc.Label).string = GlobalData.gameConf.curScore;
+	},
 });
