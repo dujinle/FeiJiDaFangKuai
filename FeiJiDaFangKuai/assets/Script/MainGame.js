@@ -5,6 +5,7 @@ cc.Class({
     properties: {
 		scoreNode:cc.Node,
 		tanke:cc.Node,
+		actionNode:cc.Node,
 		zawItem:cc.Node,
 		zawNode:cc.Node,
 		propIcon:cc.Node,
@@ -26,6 +27,25 @@ cc.Class({
 		//随机初始化一个肤色
 		GlobalData.runTime.particleSkin = util.getRandomNum(GlobalData.ParticleConf.length);
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
+	},
+	showAnimate(type){
+		var ani = cc.instantiate(this.actionNode);
+		ani.x = this.gameTanke.x;
+		ani.y = this.gameTanke.y + 70;
+		if(type == 1){
+			ani.getComponent(cc.Label).string = '加速+';
+		}else if(type == 2){
+			ani.getComponent(cc.Label).string = '力量+';
+		}
+		ani.zIndex = 5;
+		this.node.addChild(ani);
+		ani.active = true;
+		var swap = cc.spawn(cc.moveTo(1,cc.v2(ani.x,ani.y + 100)),cc.fadeOut(1));
+		ani.runAction(cc.sequence(swap,
+			cc.callFunc(function(){
+				ani.destroy();
+			})
+		));
 	},
 	freshZaw(){
 		this.zaw = cc.instantiate(this.zawNode);
@@ -93,6 +113,7 @@ cc.Class({
 		console.log('onLoad');
 		this.zawNode.active = false;
 		this.zawItem.active = false;
+		this.actionNode.active = false;
 		this.flag = false;
 		for(var i = 0; i < 6;i++){
 			var item = cc.instantiate(this.zawItem);
@@ -104,10 +125,6 @@ cc.Class({
 	destroyGame(){
 		GlobalData.runTime.gameStep = 1;
 		GlobalData.runTime.curScore = 0;
-		GlobalData.runTime.shootNum = GlobalData.gameConf.shootNum;
-		GlobalData.runTime.shootSpeed = GlobalData.gameConf.shootSpeed;
-		GlobalData.runTime.shootPowder = GlobalData.gameConf.shootPowder;
-		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed;
 		this.zaw.stopAllActions();
 		this.zaw.removeFromParent();
 		this.zaw.destroy();

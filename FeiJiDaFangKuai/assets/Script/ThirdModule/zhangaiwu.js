@@ -39,28 +39,28 @@ cc.Class({
 			}
 			
 			if(this.target > 0){
-				this.setNum(this.target);
+				this.numLabel.getComponent(cc.Label).string = this.target;
 			}else{
 				if(this.wuxing.active == true){
 					this.wuxing.active = false;
 					if(this.wuxingType == 1){//ups
 						//增加子弹速度
-						GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - (GlobalData.gameConf.propUps * 0.05);
-						GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + (GlobalData.gameConf.propUps * 100);
+						GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - 0.05;
+						GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + 100;
 						setTimeout(function(){
-							GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed + (GlobalData.gameConf.propUps * 0.05);
-							GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed - (GlobalData.gameConf.propUps * 100);
+							GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed + 0.05;
+							GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed - 100;
 						},10000);
 					}else if(this.wuxingType == 2){//power
-						GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder * (GlobalData.gameConf.propPower + 1);
+						GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder + 1;
 						setTimeout(function(){
-							GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder / (GlobalData.gameConf.propPower + 1);
+							GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder - 1;
 						},10000);
 					}else if(this.wuxingType == 3){//shootNum
 						GlobalData.runTime.shootNum = 3;
 						setTimeout(function(){
 							GlobalData.runTime.shootNum = 1;
-						},1000);
+						},10000);
 					}
 				}
 				this.collider.enabled = false;

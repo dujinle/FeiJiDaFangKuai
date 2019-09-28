@@ -13,11 +13,12 @@ cc.Class({
 			this.collider.enabled = false;
 			if(GlobalData.runTime.propType == 1){
 				//增加子弹速度
-				GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - (GlobalData.gameConf.propUps * 0.05);
-				GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + (GlobalData.gameConf.propUps * 100);
+				GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - 0.05;
+				GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + 100;
 			}else if(GlobalData.runTime.propType == 2){
-				GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder * (GlobalData.gameConf.propPower + 1);
+				GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder + 1;
 			}
+			GlobalData.game.mainGame.getComponent('MainGame').showAnimate(GlobalData.runTime.propType);
 			this.node.destroy();
 		}
     },

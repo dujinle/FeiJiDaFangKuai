@@ -68,9 +68,10 @@ cc.Class({
 		GlobalData.runTime.gameStep = 1;
 		GlobalData.runTime.curScore = 0;
 		GlobalData.runTime.shootNum = GlobalData.gameConf.shootNum;
-		GlobalData.runTime.shootSpeed = GlobalData.gameConf.shootSpeed;
-		GlobalData.runTime.shootPowder = GlobalData.gameConf.shootPowder;
-		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed;
+		GlobalData.runTime.shootSpeed = GlobalData.gameConf.shootSpeed - ((GlobalData.gameConf.propUps -1) * 0.05);
+		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed + ((GlobalData.gameConf.propUps - 1)* 100);
+		GlobalData.runTime.shootPowder = GlobalData.gameConf.shootPowder + (GlobalData.gameConf.propPower - 1);
+		
 		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
 		GlobalData.game.mainGame.active = true;
 		GlobalData.game.mainGame.getComponent('MainGame').initGame();

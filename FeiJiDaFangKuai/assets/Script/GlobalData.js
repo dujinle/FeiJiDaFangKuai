@@ -1,4 +1,6 @@
 GlobalData = {
+	cdnWebsite:'https://www.enjoymygame.com',
+	cdnFileDefaultPath:'/xiaochengxu/tankechongji/tankechongji.json',
 	game:null,
 	AudioManager:{
 		ButtonClick:0,

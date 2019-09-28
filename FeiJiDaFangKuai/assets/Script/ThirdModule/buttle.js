@@ -14,7 +14,9 @@ cc.Class({
 		this.type = type;
 	},
     onCollisionEnter(other, self) {
-		var self = this;
+		if(this.node == null){
+			return;
+		}
 		//撞到坦克了 跳过
 		if(other.tag == 2){
 			return;
@@ -24,8 +26,8 @@ cc.Class({
 			this.collider.enabled = false;
 			this.particle.resetSystem();
 			this.sprite.active = false;
-			setTimeout(function(){
-				self.node.destroy();
+			setTimeout(()=>{
+				this.node.destroy();
 			},500);
 		}
     },
@@ -43,9 +45,8 @@ cc.Class({
 			this.node.x += GlobalData.runTime.buttleSpeed * dt;
 			this.node.y += GlobalData.runTime.buttleSpeed * dt;
 		}
-		if(this.node.x >= 320){
+		if(this.node.x >= 300){
 			this.collider.enabled = false;
-			this.node.removeFromParent();
 			this.node.destroy();
 		}
 	},
