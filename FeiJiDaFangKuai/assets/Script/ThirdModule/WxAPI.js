@@ -74,15 +74,15 @@ let WxGlobal = {
                 // 判断是否大于最小分享时间
                 let d = new Date();
                 console.log("收获分享：判断是否大于最小分享时间", d, this.sharePointConfig.shareTime);
-                if (Date.parse(d) - Date.parse(this.sharePointConfig.shareTime) > GlobalData.cdnGameConfig.minShareTime * 1000) {
+                if (Date.parse(d) - Date.parse(this.sharePointConfig.shareTime) > GlobalData.cdnParam.minShareTime * 1000) {
                     // 大于最小分享时间
                     console.log("大于最小分享时间");
 
-                    let successWeightIndex = GlobalData.GameInfoConfig.shareTimes % GlobalData.cdnGameConfig.shareSuccessWeight.length;
-                    let successWeight = GlobalData.cdnGameConfig.shareSuccessWeight[successWeightIndex];
+                    let successWeightIndex = GlobalData.runTime.shareTimes % GlobalData.cdnParam.shareSuccessWeight.length;
+                    let successWeight = GlobalData.cdnParam.shareSuccessWeight[successWeightIndex];
                     let isSuccess = Math.random() < successWeight;
 
-                    console.log("分享成功概率：", isSuccess, GlobalData.GameInfoConfig.shareTimes, successWeightIndex, successWeight);
+                    console.log("分享成功概率：", isSuccess, GlobalData.runTime.shareTimes, successWeightIndex, successWeight);
 
                     // 判断是否随机到成功
                     if (isSuccess) {
@@ -97,7 +97,7 @@ let WxGlobal = {
                             this.sharePointConfig.failcallback("cancel", this.sharePointConfig.arg);
                         }
                     }
-                    GlobalData.GameInfoConfig.shareTimes++;
+                    GlobalData.runTime.shareTimes++;
                 } else {
                     // 小于最小分享时间
                     console.log("小于最小分享时间");
@@ -164,8 +164,8 @@ let WxGlobal = {
         }
         if (!GlobalData) return;
         //存储key-value格式数据到微信云端
-        var maxScore = parseInt(GlobalData.runTime.maxScore);
-        var maxLevel = parseInt(GlobalData.runTime.maxScore);
+        var maxScore = parseInt(GlobalData.gameConf.curScore);
+        var maxLevel = parseInt(GlobalData.gameConf.curScore);
 
         let obj = {
             KVDataList: [{

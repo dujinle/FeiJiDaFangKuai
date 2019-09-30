@@ -8,6 +8,7 @@ cc.Class({
 		finishGame:cc.Node,
 		rankGame:cc.Node,
 		helpGame:cc.Node,
+		fuhuoGame:cc.Node,
 		audioManager:cc.Node,
     },
 	onLoad: function () {
@@ -20,6 +21,7 @@ cc.Class({
 		this.finishGame.active = false;
 		this.rankGame.active = false;
 		this.helpGame.active = false;
+		this.fuhuoGame.active = false;
     },
 	loadDataSync(){
 		var self = this;

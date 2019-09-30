@@ -11,6 +11,9 @@ cc.Class({
 		this.collider = this.node.getComponent(cc.CircleCollider);
 	},
 	shoot(type){
+		this.collider.enabled = true;
+		this.particle.stopSystem();
+		this.sprite.active = true;
 		this.type = type;
 	},
     onCollisionEnter(other, self) {
@@ -27,7 +30,7 @@ cc.Class({
 			this.particle.resetSystem();
 			this.sprite.active = false;
 			setTimeout(()=>{
-				this.node.destroy();
+				GlobalData.buttles.put(this.node);
 			},500);
 		}
     },
@@ -47,7 +50,7 @@ cc.Class({
 		}
 		if(this.node.x >= 300){
 			this.collider.enabled = false;
-			this.node.destroy();
+			GlobalData.buttles.put(this.node);
 		}
 	},
 });

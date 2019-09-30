@@ -4,10 +4,6 @@ cc.Class({
 
     properties: {
 		scoreNode:cc.Node,
-		tanke:cc.Node,
-		actionNode:cc.Node,
-		zawItem:cc.Node,
-		zawNode:cc.Node,
 		propIcon:cc.Node,
 		flag:false,
     },
@@ -18,7 +14,7 @@ cc.Class({
 		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
 		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
 		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
-		this.gameTanke = cc.instantiate(this.tanke);
+		this.gameTanke = cc.instantiate(GlobalData.assets['tanke']);
 		this.node.addChild(this.gameTanke);
 		this.gameTanke.position = cc.v2(-260,0);
 		this.gameTanke.active = true;
@@ -29,7 +25,7 @@ cc.Class({
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
 	},
 	showAnimate(type){
-		var ani = cc.instantiate(this.actionNode);
+		var ani = cc.instantiate(GlobalData.assets['actionLabel']);
 		ani.x = this.gameTanke.x;
 		ani.y = this.gameTanke.y + 70;
 		if(type == 1){
@@ -48,7 +44,12 @@ cc.Class({
 		));
 	},
 	freshZaw(){
-		this.zaw = cc.instantiate(this.zawNode);
+		if(this.zaw != null){
+			this.zaw.stopAllActions();
+			this.zaw.removeFromParent();
+			this.zaw.destroy();
+		}
+		this.zaw = cc.instantiate(GlobalData.assets['zhangaiwus']);
 		this.node.addChild(this.zaw);
 		this.zaw.position = cc.v2(366,15);
 		this.zaw.active = true;
@@ -76,7 +77,6 @@ cc.Class({
 			}
 		}
 		
-		
 		//添加道具
 		if(GlobalData.runTime.gameStep % GlobalData.cdnParam.propNum == 0){
 			var prop = cc.instantiate(this.propIcon);
@@ -99,32 +99,52 @@ cc.Class({
 		GlobalData.runTime.gameStep += 1;
 	},
 	tankeEnd(){
-		if(this.gameTanke.isValid){
+		if(this.gameTanke){
 			this.gameTanke.getComponent('tanke').resumeDown();
 		}
 	},
 	tankeJump(){
-		if(this.gameTanke.isValid){
+		if(this.gameTanke){
 			this.gameTanke.getComponent('tanke').Jump();
 		}
 	},
     // use this for initialization
     onLoad: function () {
 		console.log('onLoad');
-		this.zawNode.active = false;
-		this.zawItem.active = false;
-		this.actionNode.active = false;
 		this.flag = false;
-		for(var i = 0; i < 6;i++){
-			var item = cc.instantiate(this.zawItem);
-			this.zawNode.addChild(item);
-			item.x = 0;
-			item.y = GlobalData.ZhangAiWu[i];
-		}
     },
+	pauseGame(){
+		this.zaw.stopAllActions();
+		GlobalData.runTime.gameStatus = 2;
+		if(this.gameTanke){
+			this.gameTanke.getComponent('tanke').pauseGame();
+		}
+		this.touchOff();
+	},
+	reliveGame(){
+		GlobalData.runTime.reliveFlag = 1;
+		GlobalData.runTime.gameStatus = 1;
+		if(this.gameTanke != null){
+			this.gameTanke.removeFromParent();
+			this.gameTanke.destroy();
+		}
+		this.freshZaw();
+		this.gameTanke = cc.instantiate(GlobalData.assets['tanke']);
+		this.node.addChild(this.gameTanke);
+		this.gameTanke.position = cc.v2(-260,0);
+		this.gameTanke.active = true;
+		this.gameTanke.getComponent('tanke').startGame();
+		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
+		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
+		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+	},
 	destroyGame(){
 		GlobalData.runTime.gameStep = 1;
 		GlobalData.runTime.curScore = 0;
+		GlobalData.runTime.gameStatus = 0;
+		if(GlobalData.buttles != null){
+			GlobalData.buttles.clear()
+		}
 		this.zaw.stopAllActions();
 		this.zaw.removeFromParent();
 		this.zaw.destroy();
@@ -139,12 +159,9 @@ cc.Class({
     update: function (dt) {
 		var self = this;
 		this.scoreNode.getComponent(cc.Label).string = GlobalData.runTime.curScore;
-		if(this.flag == true && this.zaw.x <= -300){
+		if(this.flag == true && this.zaw.x <= -400 && GlobalData.runTime.gameStatus == 1){
 			this.flag = false;
 			setTimeout(function(){
-				self.zaw.stopAllActions();
-				self.zaw.removeFromParent();
-				self.zaw.destroy();
 				self.freshZaw();
 			},500);
 		}

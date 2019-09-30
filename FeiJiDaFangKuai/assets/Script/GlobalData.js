@@ -1,7 +1,12 @@
 GlobalData = {
 	cdnWebsite:'https://www.enjoymygame.com',
-	cdnFileDefaultPath:'/xiaochengxu/tankechongji/tankechongji.json',
+	cdnFileDefaultPath:'/xiaochengxu/tankechongji/tankechongji_1.json',
+	msgBox:{
+		DJAVContent:'看完视频才能获得奖励，请再看一次!',
+		DJShareContent:'请分享到不同的群获得更多的好友帮助!'
+	},
 	game:null,
+	buttles:null,
 	AudioManager:{
 		ButtonClick:0,
 		Shoot:1,
@@ -27,17 +32,29 @@ GlobalData = {
 		shootNum:1,
 		shootSpeed:0.5,
 		shootPowder:1,
+		gameStatus:0,
 		buttleSpeed:500,
+		reliveFlag:0,
 		maxScore:0,
 		curScore:0,
 		gameStep:1,
 		propType:1,//1 ups 2 power
-		particleSkin:0
+		shareTimes:0,
+		particleSkin:0,
+		jushu:0
 	},
 	cdnParam:{
+		shareType:1,
 		stepNum:4,
 		propNum:4,
+		minShareTime:2.8,
+		shareSuccessWeight:[1,1,1,1,1],
 		xingNum:6,
+		reliveConf:{
+			rate:0.5,
+			lock:1
+		},
+		videoRate:0,
 		propRate:0.5,
 		wuxingRate:{
 			ups:0.4,

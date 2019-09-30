@@ -65,8 +65,11 @@ cc.Class({
 	},
     startButtonCb(event){
 		this.node.active = false;
+		GlobalData.runTime.jushu += 1;
 		GlobalData.runTime.gameStep = 1;
 		GlobalData.runTime.curScore = 0;
+		GlobalData.runTime.gameStatus = 1;
+		GlobalData.runTime.reliveFlag = 0;
 		GlobalData.runTime.shootNum = GlobalData.gameConf.shootNum;
 		GlobalData.runTime.shootSpeed = GlobalData.gameConf.shootSpeed - ((GlobalData.gameConf.propUps -1) * 0.05);
 		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed + ((GlobalData.gameConf.propUps - 1)* 100);

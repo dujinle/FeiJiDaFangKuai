@@ -35,6 +35,7 @@ cc.Class({
 		if(GlobalData.runTime.maxScore < GlobalData.runTime.curScore){
 			GlobalData.runTime.maxScore = GlobalData.runTime.curScore
 		}
+		GlobalData.runTime.gameStatus = 0;
 		GlobalData.gameConf.curScore += GlobalData.runTime.curScore;
 		ThirdAPI.updataGameInfo();
 	},
