@@ -4,6 +4,6 @@ window.DOMParser = Parser.DOMParser;
 require('libs/wx-downloader.js');
 wxDownloader.REMOTE_SERVER_ROOT = "";
 wxDownloader.SUBCONTEXT_ROOT = "wx-open-data-project";
-require('src/settings.0b264');
-require('main.cd59d');
+require('src/settings');
+require('main');
 require('libs/sub-context-adapter');

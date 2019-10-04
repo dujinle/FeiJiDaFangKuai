@@ -148,6 +148,7 @@ cc.Class({
 		this.zaw.stopAllActions();
 		this.zaw.removeFromParent();
 		this.zaw.destroy();
+		this.zaw = null;
 		this.touchOff();
 	},
 	touchOff(){

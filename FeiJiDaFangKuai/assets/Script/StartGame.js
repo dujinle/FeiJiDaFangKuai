@@ -80,12 +80,12 @@ cc.Class({
 		GlobalData.game.mainGame.getComponent('MainGame').initGame();
 	},
 	soundButtonCb(){
-		if(GlobalData.GameInfoConfig.audioSupport == 0){
+		if(GlobalData.runTime.audioSupport == 0){
 			this.soundOnNode.active = true;
 			this.soundOffNode.active = false;
-			GlobalData.GameInfoConfig.audioSupport = 1;
+			GlobalData.runTime.audioSupport = 1;
 		}else{
-			GlobalData.GameInfoConfig.audioSupport = 0;
+			GlobalData.runTime.audioSupport = 0;
 			this.soundOnNode.active = false;
 			this.soundOffNode.active = true;
 		}

@@ -12,7 +12,8 @@ cc.Class({
 	},
 	shoot(type){
 		this.collider.enabled = true;
-		this.particle.stopSystem();
+		this.particle.node.active = false;
+		//this.particle.stopSystem();
 		this.sprite.active = true;
 		this.type = type;
 	},
@@ -27,6 +28,7 @@ cc.Class({
 		//撞到障碍物了 播放动画
 		if(other.tag == 3){
 			this.collider.enabled = false;
+			this.particle.node.active = true;
 			this.particle.resetSystem();
 			this.sprite.active = false;
 			setTimeout(()=>{

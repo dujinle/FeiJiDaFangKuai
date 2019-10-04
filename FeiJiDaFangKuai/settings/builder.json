@@ -15,7 +15,9 @@
     "subContext": ""
   },
   "encryptJs": true,
-  "excludeScenes": [],
+  "excludeScenes": [
+    "d728ca4b-d00f-43fa-a691-6eb9f4779ac4"
+  ],
   "fb-instant-games": {},
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
@@ -45,6 +47,6 @@
     "separate_engine": false,
     "subContext": "wx-open-data-project"
   },
-  "xxteaKey": "2f660cda-cba0-48",
+  "xxteaKey": "9c633d2f-cf39-41",
   "zipCompressJs": true
 }

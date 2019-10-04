@@ -24,7 +24,6 @@ cc.Class({
 		this.collider = this.node.getComponent(cc.BoxCollider);
 	},
 	onCollisionEnter(other, self) {
-		var self = this;
 		if(other.tag == self.tag){
 			return;
 		}
@@ -71,8 +70,8 @@ cc.Class({
 				this.particles.spriteFrame = GlobalData.assets[skin];
 				this.particles.resetSystem();
 				GlobalData.runTime.particleSkin += 1;
-				setTimeout(function(){
-					self.node.destroy();
+				setTimeout(()=>{
+					this.node.destroy();
 				},500);
 			}
 		}

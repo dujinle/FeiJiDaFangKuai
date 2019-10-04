@@ -69,30 +69,20 @@
     "meta": 1542942924849,
     "relativePath": "res\\rank_3.png"
   },
-  "d5fd7891-f8f3-4704-8fd6-450223b18159": {
-    "asset": 1543211544787,
-    "meta": 1543211547117,
-    "relativePath": "Scripts\\RankItem.js"
-  },
   "1c8bad12-5cee-4375-8f7b-0a899d349009": {
     "asset": 1543491403546,
     "meta": 1543491446758,
     "relativePath": "Scripts\\ScrollView.js"
   },
   "4b762488-446e-4c1f-a571-f362489be9e0": {
-    "asset": 1544768890417,
-    "meta": 1546696127274,
+    "asset": 1570208339950,
+    "meta": 1570208720011,
     "relativePath": "Scripts\\FinishGameRank.js"
   },
   "21f7dfff-20d0-4a0f-b27a-6a259a51b1e1": {
     "asset": 1544768890419,
     "meta": 1546696127422,
     "relativePath": "Scripts\\RankGameView.js"
-  },
-  "d5fe2955-ada1-48f6-83e4-fa64273244ae": {
-    "asset": 1544768890413,
-    "meta": 1546696127255,
-    "relativePath": "Scripts\\AboveGameView.js"
   },
   "3f655645-631f-4698-9ce7-338ec7eb0fc1": {
     "asset": 1546599562015,
@@ -308,5 +298,15 @@
     "asset": 1530695500000,
     "meta": 1569531191061,
     "relativePath": "prefab\\webview.prefab"
+  },
+  "d5fe2955-ada1-48f6-83e4-fa64273244ae": {
+    "asset": 1570208855605,
+    "meta": 1570208876525,
+    "relativePath": "Scripts\\AboveGameView.js"
+  },
+  "d5fd7891-f8f3-4704-8fd6-450223b18159": {
+    "asset": 1570208846435,
+    "meta": 1570208876527,
+    "relativePath": "Scripts\\RankItem.js"
   }
 }

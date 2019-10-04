@@ -1,56 +1,56 @@
-2019-09-26T20:53:01.283Z - normal: Load ~/.CocosCreator/settings.json
-2019-09-26T20:53:01.291Z - normal: checking language setting...
-2019-09-26T20:53:01.291Z - normal: Language: zh
-2019-09-26T20:53:04.780Z - success: protocol editor-framework registered
-2019-09-26T20:53:04.780Z - success: protocol app registered
-2019-09-26T20:53:04.780Z - success: protocol theme registered
-2019-09-26T20:53:04.780Z - success: protocol packages registered
-2019-09-26T20:53:04.781Z - success: protocol unpack registerred
-2019-09-26T20:53:04.781Z - success: protocol disable-commonjs registerred
-2019-09-26T20:53:04.879Z - normal: connected!
-2019-09-26T20:53:04.882Z - normal: Check project E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
-2019-09-26T20:53:04.887Z - normal: Initializing Cocos2d
-2019-09-26T20:53:05.609Z - normal: Initializing Asset Database
-2019-09-26T20:53:05.704Z - success: protocol uuid registerred
-2019-09-26T20:53:05.704Z - success: protocol db registerred
-2019-09-26T20:53:05.704Z - success: protocol thumbnail registerred
-2019-09-26T20:53:05.704Z - normal: Loading editor/builtin packages
-2019-09-26T20:53:05.864Z - success: anysdk loaded
-2019-09-26T20:53:06.114Z - success: assets loaded
-2019-09-26T20:53:06.118Z - success: builder loaded
-2019-09-26T20:53:06.123Z - success: cocos-analytics loaded
-2019-09-26T20:53:06.129Z - success: console loaded
-2019-09-26T20:53:06.188Z - success: fb-instant-games loaded
-2019-09-26T20:53:06.194Z - success: hierarchy loaded
-2019-09-26T20:53:06.199Z - success: inspector loaded
-2019-09-26T20:53:06.201Z - success: keystore loaded
-2019-09-26T20:53:06.206Z - success: node-library loaded
-2019-09-26T20:53:06.209Z - success: package-asset loaded
-2019-09-26T20:53:06.213Z - success: preferences loaded
-2019-09-26T20:53:06.216Z - success: project-exporter loaded
-2019-09-26T20:53:06.246Z - success: project-importer loaded
-2019-09-26T20:53:06.249Z - success: project-settings loaded
-2019-09-26T20:53:06.254Z - success: ui-kit loaded
-2019-09-26T20:53:06.268Z - success: ui-grid loaded
-2019-09-26T20:53:06.274Z - success: scene loaded
-2019-09-26T20:53:06.277Z - success: sprite-editor loaded
-2019-09-26T20:53:06.283Z - success: store loaded
-2019-09-26T20:53:06.291Z - success: timeline loaded
-2019-09-26T20:53:06.291Z - normal: Loading builtin packages
-2019-09-26T20:53:06.321Z - success: asset-db-debugger loaded
-2019-09-26T20:53:06.325Z - success: code-editor loaded
-2019-09-26T20:53:06.326Z - success: color-picker loaded
-2019-09-26T20:53:06.333Z - success: package-manager loaded
-2019-09-26T20:53:06.336Z - success: qqplay-adapter loaded
-2019-09-26T20:53:06.352Z - success: sdkbox loaded
-2019-09-26T20:53:06.359Z - success: tester loaded
-2019-09-26T20:53:06.363Z - success: ui-kit-preview-extra loaded
-2019-09-26T20:53:06.381Z - success: ui-kit-preview loaded
-2019-09-26T20:53:06.385Z - success: ui-tree loaded
-2019-09-26T20:53:06.385Z - success: weapp-adapter loaded
-2019-09-26T20:53:08.940Z - normal: Initializing project E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
-2019-09-26T20:53:08.968Z - normal: Loading packages
-2019-09-26T20:53:08.984Z - failed: Failed to load package at C:\Users\Administrator\.CocosCreator\packages\2016-10-13base: Failed to load main.js: Error: Cannot find module 'base64-node'
+2019-10-04T17:05:09.921Z - normal: Load ~/.CocosCreator/settings.json
+2019-10-04T17:05:09.930Z - normal: checking language setting...
+2019-10-04T17:05:09.931Z - normal: Language: zh
+2019-10-04T17:05:13.150Z - success: protocol editor-framework registered
+2019-10-04T17:05:13.150Z - success: protocol app registered
+2019-10-04T17:05:13.150Z - success: protocol theme registered
+2019-10-04T17:05:13.151Z - success: protocol packages registered
+2019-10-04T17:05:13.151Z - success: protocol unpack registerred
+2019-10-04T17:05:13.151Z - success: protocol disable-commonjs registerred
+2019-10-04T17:05:13.252Z - normal: connected!
+2019-10-04T17:05:13.256Z - normal: Check project E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
+2019-10-04T17:05:13.260Z - normal: Initializing Cocos2d
+2019-10-04T17:05:14.094Z - normal: Initializing Asset Database
+2019-10-04T17:05:14.212Z - success: protocol uuid registerred
+2019-10-04T17:05:14.212Z - success: protocol db registerred
+2019-10-04T17:05:14.212Z - success: protocol thumbnail registerred
+2019-10-04T17:05:14.213Z - normal: Loading editor/builtin packages
+2019-10-04T17:05:14.305Z - success: anysdk loaded
+2019-10-04T17:05:14.610Z - success: assets loaded
+2019-10-04T17:05:14.614Z - success: builder loaded
+2019-10-04T17:05:14.619Z - success: cocos-analytics loaded
+2019-10-04T17:05:14.627Z - success: console loaded
+2019-10-04T17:05:14.693Z - success: fb-instant-games loaded
+2019-10-04T17:05:14.699Z - success: hierarchy loaded
+2019-10-04T17:05:14.703Z - success: inspector loaded
+2019-10-04T17:05:14.706Z - success: keystore loaded
+2019-10-04T17:05:14.712Z - success: node-library loaded
+2019-10-04T17:05:14.715Z - success: package-asset loaded
+2019-10-04T17:05:14.721Z - success: preferences loaded
+2019-10-04T17:05:14.724Z - success: project-exporter loaded
+2019-10-04T17:05:14.757Z - success: project-importer loaded
+2019-10-04T17:05:14.761Z - success: project-settings loaded
+2019-10-04T17:05:14.766Z - success: ui-kit loaded
+2019-10-04T17:05:14.783Z - success: ui-grid loaded
+2019-10-04T17:05:14.825Z - success: scene loaded
+2019-10-04T17:05:14.827Z - success: sprite-editor loaded
+2019-10-04T17:05:14.835Z - success: store loaded
+2019-10-04T17:05:14.844Z - success: timeline loaded
+2019-10-04T17:05:14.844Z - normal: Loading builtin packages
+2019-10-04T17:05:14.864Z - success: asset-db-debugger loaded
+2019-10-04T17:05:14.868Z - success: code-editor loaded
+2019-10-04T17:05:14.869Z - success: color-picker loaded
+2019-10-04T17:05:14.886Z - success: package-manager loaded
+2019-10-04T17:05:14.891Z - success: qqplay-adapter loaded
+2019-10-04T17:05:14.901Z - success: sdkbox loaded
+2019-10-04T17:05:14.908Z - success: tester loaded
+2019-10-04T17:05:14.912Z - success: ui-kit-preview-extra loaded
+2019-10-04T17:05:14.915Z - success: ui-kit-preview loaded
+2019-10-04T17:05:14.933Z - success: ui-tree loaded
+2019-10-04T17:05:14.934Z - success: weapp-adapter loaded
+2019-10-04T17:05:17.641Z - normal: Initializing project E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
+2019-10-04T17:05:17.666Z - normal: Loading packages
+2019-10-04T17:05:17.684Z - failed: Failed to load package at C:\Users\Administrator\.CocosCreator\packages\2016-10-13base: Failed to load main.js: Error: Cannot find module 'base64-node'
     at Module._resolveFilename (module.js:470:15)
     at Function.Module._resolveFilename (D:\CocosCreator193\resources\electron.asar\common\reset-search-paths.js:35:12)
     at Function.Module._load (module.js:418:25)
@@ -61,12 +61,12 @@
     at Module._compile (module.js:571:32)
     at Object.Module._extensions..js (module.js:580:10)
     at Module.load (module.js:488:32)
-2019-09-26T20:53:08.989Z - success: package.json loaded
-2019-09-26T20:53:08.989Z - normal: Watching packages
-2019-09-26T20:53:09.781Z - normal: Run Application
-2019-09-26T20:53:11.979Z - success: preview server running at http://localhost:7458
-2019-09-26T20:53:20.199Z - normal: 1.9.3
-2019-09-26T21:40:01.715Z - normal: Start building with options : {
+2019-10-04T17:05:17.689Z - success: package.json loaded
+2019-10-04T17:05:17.690Z - normal: Watching packages
+2019-10-04T17:05:18.592Z - normal: Run Application
+2019-10-04T17:05:20.754Z - success: preview server running at http://localhost:7457
+2019-10-04T17:05:30.832Z - normal: 1.9.3
+2019-10-04T17:05:52.693Z - normal: Start building with options : {
   "androidStudio": true,
   "apiLevel": "",
   "appABIs": [],
@@ -113,7 +113,7 @@
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "jailbreakPlatform": false,
-  "md5Cache": true,
+  "md5Cache": false,
   "mergeStartScene": false,
   "oauthLoginServer": "",
   "optimizeHotUpdate": false,
@@ -156,25 +156,25 @@
   "projectName": "wx-open-data-project",
   "debugBuildWorker": false
 }
-2019-09-26T21:40:01.720Z - normal: Building E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
-2019-09-26T21:40:01.720Z - normal: Destination E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project
-2019-09-26T21:40:02.567Z - normal: Delete E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project\**\*
-2019-09-26T21:40:06.257Z - normal: Compiled project javascript file successfully
-2019-09-26T21:40:06.258Z - normal: Start building assets
-2019-09-26T21:40:06.258Z - normal: Start spawn build-worker
-2019-09-26T21:40:07.459Z - normal: Finish spawn build-worker
-2019-09-26T21:40:07.459Z - normal: Start init build-worker
-2019-09-26T21:40:11.441Z - normal: 1.9.3
-2019-09-26T21:40:11.568Z - normal: Finish init build-worker
-2019-09-26T21:40:11.568Z - normal: Start build-assets in worker
-2019-09-26T21:40:11.951Z - normal: Finish build-assets in worker
-2019-09-26T21:40:11.965Z - normal: Finish building assets
-2019-09-26T21:40:11.982Z - normal: Start building raw assets
-2019-09-26T21:40:11.984Z - normal: Start building plugin scripts
-2019-09-26T21:40:12.048Z - normal: Finish building raw assets
-2019-09-26T21:40:12.055Z - normal: Generating main.js from D:\CocosCreator193\resources\static\build-templates\shares\main.js
-2019-09-26T21:40:15.250Z - normal: Built to "E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wechatgame" successfully
-2019-09-26T21:42:42.019Z - normal: Start building with options : {
+2019-10-04T17:05:52.696Z - normal: Building E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
+2019-10-04T17:05:52.697Z - normal: Destination E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project
+2019-10-04T17:05:53.555Z - normal: Delete E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project\**\*
+2019-10-04T17:05:57.611Z - normal: Compiled project javascript file successfully
+2019-10-04T17:05:57.612Z - normal: Start building assets
+2019-10-04T17:05:57.612Z - normal: Start spawn build-worker
+2019-10-04T17:05:58.937Z - normal: Finish spawn build-worker
+2019-10-04T17:05:58.937Z - normal: Start init build-worker
+2019-10-04T17:06:03.324Z - normal: 1.9.3
+2019-10-04T17:06:03.452Z - normal: Finish init build-worker
+2019-10-04T17:06:03.452Z - normal: Start build-assets in worker
+2019-10-04T17:06:03.866Z - normal: Finish build-assets in worker
+2019-10-04T17:06:03.877Z - normal: Finish building assets
+2019-10-04T17:06:03.894Z - normal: Start building raw assets
+2019-10-04T17:06:03.895Z - normal: Start building plugin scripts
+2019-10-04T17:06:03.942Z - normal: Finish building raw assets
+2019-10-04T17:06:03.951Z - normal: Generating main.js from D:\CocosCreator193\resources\static\build-templates\shares\main.js
+2019-10-04T17:06:05.707Z - normal: Built to "E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wechatgame" successfully
+2019-10-04T17:08:05.110Z - normal: Start building with options : {
   "androidStudio": true,
   "apiLevel": "",
   "appABIs": [],
@@ -221,7 +221,7 @@
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "jailbreakPlatform": false,
-  "md5Cache": true,
+  "md5Cache": false,
   "mergeStartScene": false,
   "oauthLoginServer": "",
   "optimizeHotUpdate": false,
@@ -264,22 +264,21 @@
   "projectName": "wx-open-data-project",
   "debugBuildWorker": false
 }
-2019-09-26T21:42:42.024Z - normal: Building E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
-2019-09-26T21:42:42.024Z - normal: Destination E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project
-2019-09-26T21:42:42.026Z - normal: Delete E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project\**\*
-2019-09-26T21:42:45.791Z - normal: Compiled project javascript file successfully
-2019-09-26T21:42:45.792Z - normal: Start building assets
-2019-09-26T21:42:45.792Z - normal: Start spawn build-worker
-2019-09-26T21:42:47.087Z - normal: Finish spawn build-worker
-2019-09-26T21:42:47.087Z - normal: Start init build-worker
-2019-09-26T21:42:51.410Z - normal: 1.9.3
-2019-09-26T21:42:51.531Z - normal: Finish init build-worker
-2019-09-26T21:42:51.532Z - normal: Start build-assets in worker
-2019-09-26T21:42:51.895Z - normal: Finish build-assets in worker
-2019-09-26T21:42:51.912Z - normal: Finish building assets
-2019-09-26T21:42:51.932Z - normal: Start building raw assets
-2019-09-26T21:42:51.934Z - normal: Start building plugin scripts
-2019-09-26T21:42:51.989Z - normal: Finish building raw assets
-2019-09-26T21:42:51.995Z - normal: Generating main.js from D:\CocosCreator193\resources\static\build-templates\shares\main.js
-2019-09-26T21:42:53.976Z - normal: Built to "E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wechatgame" successfully
-2019-09-30T16:11:17.113Z - info: shutdown preview server
+2019-10-04T17:08:05.127Z - normal: Building E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project
+2019-10-04T17:08:05.128Z - normal: Destination E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project
+2019-10-04T17:08:05.129Z - normal: Delete E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wx-open-data-project\**\*
+2019-10-04T17:08:08.641Z - normal: Compiled project javascript file successfully
+2019-10-04T17:08:08.642Z - normal: Start building assets
+2019-10-04T17:08:08.643Z - normal: Start spawn build-worker
+2019-10-04T17:08:09.991Z - normal: Finish spawn build-worker
+2019-10-04T17:08:09.992Z - normal: Start init build-worker
+2019-10-04T17:08:13.927Z - normal: 1.9.3
+2019-10-04T17:08:14.042Z - normal: Finish init build-worker
+2019-10-04T17:08:14.043Z - normal: Start build-assets in worker
+2019-10-04T17:08:14.379Z - normal: Finish build-assets in worker
+2019-10-04T17:08:14.389Z - normal: Finish building assets
+2019-10-04T17:08:14.403Z - normal: Start building raw assets
+2019-10-04T17:08:14.404Z - normal: Start building plugin scripts
+2019-10-04T17:08:14.448Z - normal: Finish building raw assets
+2019-10-04T17:08:14.454Z - normal: Generating main.js from D:\CocosCreator193\resources\static\build-templates\shares\main.js
+2019-10-04T17:08:16.002Z - normal: Built to "E:\GitHub_bak\FeiJiDaFangKuai\wx-open-data-project\build\wechatgame" successfully

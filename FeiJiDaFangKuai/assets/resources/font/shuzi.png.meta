@@ -5,11 +5,7 @@
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
-  "platformSettings": {
-    "default": {
-      "formats": []
-    }
-  },
+  "platformSettings": {},
   "subMetas": {
     "shuzi": {
       "ver": "1.0.4",

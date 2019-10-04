@@ -84,8 +84,8 @@ cc.Class({
 		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.Shoot);
 		for(var i = 0;i < GlobalData.runTime.shootNum;i++){
 			var buttle = null;
-			if(GlobalData.buttles .size() > 0){
-				buttle = GlobalData.buttles .get();
+			if(GlobalData.buttles.size() > 0){
+				buttle = GlobalData.buttles.get();
 			}else{
 				buttle = cc.instantiate(GlobalData.assets['buttle']);
 			}

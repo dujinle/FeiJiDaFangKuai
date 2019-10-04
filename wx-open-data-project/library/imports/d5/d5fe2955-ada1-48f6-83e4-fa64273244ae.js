@@ -41,6 +41,9 @@ cc.Class({
 		}
 	},
 	loadImage: function loadImage(node, url) {
+		if (url == null || url.length == 0) {
+			return;
+		}
 		cc.loader.load({ url: url, type: 'png' }, function (err, tex) {
 			//console.log("loadImage",url,node);
 			node.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(tex);
