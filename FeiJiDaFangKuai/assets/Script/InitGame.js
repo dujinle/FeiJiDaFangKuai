@@ -1,4 +1,5 @@
 var ThirdAPI = require('ThirdAPI');
+var util = require('util');
 cc.Class({
     extends: cc.Component,
 
@@ -22,6 +23,7 @@ cc.Class({
 		this.rankGame.active = false;
 		this.helpGame.active = false;
 		this.fuhuoGame.active = false;
+		util.customScreenAdapt(this);
     },
 	loadDataSync(){
 		var self = this;

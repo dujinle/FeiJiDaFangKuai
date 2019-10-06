@@ -1,29 +1,50 @@
-var ThirdAPI = require('ThirdAPI');
 var WxVideoAd = require('WxVideoAd');
 cc.Class({
     extends: cc.Component,
 
     properties: {
-		processBar:cc.Node,
-		numLabel:cc.Node,
+        openSprite:cc.Node,
+		propSprite:cc.Node,
 		cancleLabel:cc.Node,
-		openSprite:cc.Node,
-		rate:10,
-		loadUpdate:null,
 		openType:null,
-		cbFunc:null,
+		propType:null,
     },
     onLoad () {
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
-			console.log('touch continueNow');
 			e.stopPropagation();
 		})
-		this.numLabel.getComponent(cc.Label).string = 10;
-		this.processBar.getComponent(cc.ProgressBar).progress = 1;
+		this.cancleLabel.runAction(cc.fadeOut());
 	},
-	continueNow(event){
+	show(propType,openType){
+		//按钮图标设置
+		if(openType == 'DJShare'){
+			this.openSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['share'];
+		}else if(openType == 'DJAV'){
+			this.openSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['share_video'];
+		}
+		this.openType = openType;
+		//道具图标设置
+		if(propType == 1){//ups
+			this.propSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['Ups'];
+		}else if(propType == 2){//powers
+			this.propSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['Power'];
+		}else if(propType == 3){//sandan
+			this.propSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['Sandan'];
+		}
+		this.propType = propType;
+		this.propSprite.runAction(cc.repeat(cc.sequence(cc.scaleTo(0.8, 0.5),cc.scaleTo(0.8, 1)),20));
+		setTimeout(()=>{
+			this.cancleLabel.active = true;
+		},2000);
+	},
+	quXiaoBtnCB(){
+		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
+		this.node.removeFromParent();
+		this.node.destroy();
+		GlobalData.game.mainGame.getComponent('MainGame').continueGame();
+	},
+	getPropBtn(event){
 		if(event != null){
-			this.unschedule(this.loadUpdate);
 			GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
 		}
 		this.flagCBFunc = false;
@@ -42,32 +63,28 @@ cc.Class({
 			ThirdAPI.shareGame(param);
 		}else if(this.openType == "DJAV"){
 			this.DJAVTrueCallFunc = function(arg){
-				this.node.active = false;
-				GlobalData.game.mainGame.getComponent('MainGame').reliveGame();
+				this.node.removeFromParent();
+				this.node.destroy();
+				GlobalData.game.mainGame.getComponent('MainGame').updateProp(this.propType);
+				GlobalData.game.mainGame.getComponent('MainGame').continueGame();
 			};
 			this.DJAVFalseCallFunc = function(arg){
 				if(arg == 'cancle'){
 					this.showFailInfo();
 				}else if(arg == 'error'){
 					this.openType = "DJShare";
-					this.continueNow(null);
+					this.getPropBtn();
 				}
 			};
 			WxVideoAd.installVideo(this.DJAVTrueCallFunc.bind(this),this.DJAVFalseCallFunc.bind(this),null);
 		}
 	},
-	quXiaoBtnCB(){
-		if(this.rate > 0){
-			this.unschedule(this.loadUpdate);
-		}
-		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
-		this.node.active = false;
-		GlobalData.game.finishGame.getComponent('FinishGame').show();
-	},
 	shareSuccessCb(type, fenXiangZhen, arg){
 		if(this.flagCBFunc == false){
-			this.node.active = false;
-			GlobalData.game.mainGame.getComponent('MainGame').reliveGame();
+			this.node.removeFromParent();
+			this.node.destroy();
+			GlobalData.game.mainGame.getComponent('MainGame').updateProp(this.propType);
+			GlobalData.game.mainGame.getComponent('MainGame').continueGame();
 		}
 		this.flagCBFunc = true;
 	},
@@ -92,38 +109,11 @@ cc.Class({
 				confirmColor:'#53679c',
 				success(res){
 					if (res.confirm) {
-						self.continueNow(null);
+						self.getPropBtn();
 					}else if(res.cancel){
-						self.schedule(self.loadUpdate,1);
 					}
 				}
 			});
 		}catch(err){}
-	},
-	waitCallBack(prop){
-		var self = this;
-		this.node.active = true;
-		this.openType = prop;
-		if(this.openType == 'DJShare'){
-			this.openSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['share'];
-		}else if(this.openType == 'DJAV'){
-			this.openSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['share_video'];
-		}
-		this.rate = 10;
-		this.loadUpdate = function(){
-			self.rate = self.rate - 1;
-			self.numLabel.getComponent(cc.Label).string = self.rate;
-			var scale = self.rate/10;
-			self.processBar.getComponent(cc.ProgressBar).progress = scale;
-			if(self.rate <= 0){
-				self.unschedule(self.loadUpdate);
-				self.node.active = false;
-				GlobalData.game.finishGame.getComponent('FinishGame').show();
-			}
-		};
-		this.schedule(this.loadUpdate,1);
-		setTimeout(()=>{
-			this.cancleLabel.active = true;
-		},2000);
 	}
 });

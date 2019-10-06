@@ -1,4 +1,5 @@
 var ThirdAPI = require('ThirdAPI');
+var WxBannerAd = require('WxBannerAd');
 cc.Class({
     extends: cc.Component,
 
@@ -38,13 +39,11 @@ cc.Class({
 		GlobalData.runTime.gameStatus = 0;
 		GlobalData.gameConf.curScore += GlobalData.runTime.curScore;
 		ThirdAPI.updataGameInfo();
-	},
-	hide(){
-		this.isDraw = false;
-		this.node.active = false;
+		WxBannerAd.destroyBannerAd();
 	},
 	rankButtonCb(){
 		this.isDraw = false;
+		WxBannerAd.destroyBannerAd();
 		GlobalData.game.rankGame.getComponent('RankGame').show();
 	},
 	restartButtonCb(){
@@ -52,7 +51,8 @@ cc.Class({
 		GlobalData.game.startGame.getComponent('StartGame').onShow();
 		GlobalData.game.mainGame.getComponent('MainGame').destroyGame();
 		GlobalData.game.mainGame.active = false;
-		this.hide();
+		this.isDraw = false;
+		this.node.active = false;
 	},
 	shareToFriends(){
 		var param = {

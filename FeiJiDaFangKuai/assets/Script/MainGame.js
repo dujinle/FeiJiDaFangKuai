@@ -1,10 +1,12 @@
 var util = require('util');
+var WxBannerAd = require('WxBannerAd');
 cc.Class({
     extends: cc.Component,
 
     properties: {
 		scoreNode:cc.Node,
 		propIcon:cc.Node,
+		bottomLine:cc.Node,
 		flag:false,
     },
 	initGame(){
@@ -23,16 +25,30 @@ cc.Class({
 		//随机初始化一个肤色
 		GlobalData.runTime.particleSkin = util.getRandomNum(GlobalData.ParticleConf.length);
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
+		//添加广告位
+		var sizeHeight = cc.winSize.height;
+		var bottomLinePos = this.bottomLine.getPosition();
+		//向下移 10个像素 不要挨得最下面的节点太近
+		var yy = Math.abs(bottomLinePos.y) +  this.bottomLine.getContentSize().height/2 + sizeHeight/2;
+		var yRate = 1 - yy/sizeHeight;
+		WxBannerAd.createBannerAd(yRate);
 	},
-	showAnimate(type){
+	showAnimate(type,time){
 		var ani = cc.instantiate(GlobalData.assets['actionLabel']);
 		ani.x = this.gameTanke.x;
 		ani.y = this.gameTanke.y + 70;
+		var label = '';
 		if(type == 1){
-			ani.getComponent(cc.Label).string = '加速+';
+			label = '加速+';
 		}else if(type == 2){
-			ani.getComponent(cc.Label).string = '力量+';
+			label = '力量+';
+		}else if(type == 3){
+			label = '散弹+';
 		}
+		if(time != null){
+			label = label + time;
+		}
+		ani.getComponent(cc.Label).string = label;
 		ani.zIndex = 5;
 		this.node.addChild(ani);
 		ani.active = true;
@@ -51,7 +67,7 @@ cc.Class({
 		}
 		this.zaw = cc.instantiate(GlobalData.assets['zhangaiwus']);
 		this.node.addChild(this.zaw);
-		this.zaw.position = cc.v2(366,15);
+		this.zaw.position = cc.v2(366,36);
 		this.zaw.active = true;
 		var stepNum = GlobalData.runTime.gameStep * GlobalData.cdnParam.stepNum;
 		//添加五角星
@@ -92,7 +108,7 @@ cc.Class({
 			var yy = Math.random() * size.height/2 * (Math.random() > 0.5 ? 1: -1);
 			
 			this.zaw.addChild(prop);
-			prop.setPosition(cc.v2(GlobalData.ZhangAiWu[6],yy));
+			prop.setPosition(cc.v2(-320,yy));
 		}
 		this.zaw.runAction(cc.repeatForever(cc.moveBy(0.01,cc.v2(-2,0))));
 		this.flag = true;
@@ -120,6 +136,7 @@ cc.Class({
 			this.gameTanke.getComponent('tanke').pauseGame();
 		}
 		this.touchOff();
+		GlobalData.game.audioManager.getComponent('AudioManager').pauseGameBg();
 	},
 	reliveGame(){
 		GlobalData.runTime.reliveFlag = 1;
@@ -137,6 +154,17 @@ cc.Class({
 		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
 		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
 		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
+	},
+	continueGame(){
+		GlobalData.runTime.gameStatus = 1;
+		this.zaw.runAction(cc.repeatForever(cc.moveBy(0.01,cc.v2(-2,0))));
+		this.flag = true;
+		this.gameTanke.getComponent('tanke').startGame();
+		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
+		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
+		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
 	},
 	destroyGame(){
 		GlobalData.runTime.gameStep = 1;
@@ -155,6 +183,28 @@ cc.Class({
 		this.node.off(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
 		this.node.off(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
 		this.node.off(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+	},
+	updateProp(propType){
+		if(propType == 1){//ups
+			//增加子弹速度
+			GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - 0.05;
+			GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + 100;
+			setTimeout(function(){
+				GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed + 0.05;
+				GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed - 100;
+			},10000);
+		}else if(propType == 2){//power
+			GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder + 1;
+			setTimeout(function(){
+				GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder - 1;
+			},10000);
+		}else if(propType == 3){//shootNum
+			GlobalData.runTime.shootNum = 3;
+			setTimeout(function(){
+				GlobalData.runTime.shootNum = 1;
+			},10000);
+		}
+		this.showAnimate(propType,'10秒');
 	},
     // called every frame
     update: function (dt) {

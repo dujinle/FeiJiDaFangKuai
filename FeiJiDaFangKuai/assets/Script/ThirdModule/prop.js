@@ -18,7 +18,7 @@ cc.Class({
 			}else if(GlobalData.runTime.propType == 2){
 				GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder + 1;
 			}
-			GlobalData.game.mainGame.getComponent('MainGame').showAnimate(GlobalData.runTime.propType);
+			GlobalData.game.mainGame.getComponent('MainGame').showAnimate(GlobalData.runTime.propType,null);
 			this.node.destroy();
 		}
     },

@@ -42,25 +42,17 @@ cc.Class({
 			}else{
 				if(this.wuxing.active == true){
 					this.wuxing.active = false;
-					if(this.wuxingType == 1){//ups
-						//增加子弹速度
-						GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - 0.05;
-						GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + 100;
-						setTimeout(function(){
-							GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed + 0.05;
-							GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed - 100;
-						},10000);
-					}else if(this.wuxingType == 2){//power
-						GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder + 1;
-						setTimeout(function(){
-							GlobalData.runTime.shootPowder = GlobalData.runTime.shootPowder - 1;
-						},10000);
-					}else if(this.wuxingType == 3){//shootNum
-						GlobalData.runTime.shootNum = 3;
-						setTimeout(function(){
-							GlobalData.runTime.shootNum = 1;
-						},10000);
+					//添加礼包界面
+					GlobalData.game.mainGame.getComponent('MainGame').pauseGame();
+					var giftView = cc.instantiate(GlobalData.assets['GiftView']);
+					GlobalData.game.mainGame.addChild(giftView);
+					giftView.setPosition(cc.v2(0,0));
+					if(Math.random() <= GlobalData.cdnParam.videoRate){
+						giftView.getComponent('GiftView').show(this.wuxingType,'DJAV');
+					}else{
+						giftView.getComponent('GiftView').show(this.wuxingType,'DJShare');
 					}
+					GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
 				}
 				this.collider.enabled = false;
 				this.sprite.active = false;

@@ -39,6 +39,9 @@ cc.Class({
 		}
 	},
 	playGameBg(){
+		if(this.current != null){
+			cc.audioEngine.stop(this.current);
+		}
 		if(GlobalData.runTime.audioSupport == 1){
 			this.current = cc.audioEngine.play(this.audio_bg, true, 1);
 		}
