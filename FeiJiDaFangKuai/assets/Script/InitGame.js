@@ -18,6 +18,7 @@ cc.Class({
 		GlobalData.game = this;
 		ThirdAPI.loadCDNData();
 		this.startGame.getComponent('StartGame').onShow();
+		this.startGame.getComponent('StartGame').startBtn.getComponent(cc.Button).interactable = false;
 		this.mainGame.active = false;
 		this.finishGame.active = false;
 		this.rankGame.active = false;
@@ -29,13 +30,14 @@ cc.Class({
 		var self = this;
 		//异步加载动态数据
 		this.rate = 0;
-		this.resLength = 0;
+		this.resLength = 17;
 		GlobalData.assets = {};
 		this.loadUpdate = function(){
 			console.log("this.rate:" + self.rate);
 			var scale = Math.floor((self.rate/self.resLength ) * 100);
 			if(self.rate >= self.resLength){
 				self.unschedule(self.loadUpdate);
+				self.startGame.getComponent('StartGame').startBtn.getComponent(cc.Button).interactable = true;
 			}
 		};
 		cc.loader.loadRes("dynamicPlist", cc.SpriteAtlas, function (err, atlas) {

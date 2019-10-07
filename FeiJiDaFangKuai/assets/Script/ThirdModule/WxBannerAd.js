@@ -50,7 +50,7 @@ let WxBannerAd = {
 								var buttomHeight = fitOffsetY;
 								if (GlobalData.phoneModel != 'Normal') {
 									console.log('isIphoneX或者是全面屏！');
-									buttomHeight += 40;
+									buttomHeight *= 40;
 								}
 								console.log("banner onResize res:", res.width, res.height)
 								self.bannerAd.style.left = (sysInfo.screenWidth - res.width) / 2;

@@ -10,7 +10,7 @@ cc.Class({
 		flag:false,
     },
 	initGame(){
-		console.log('initGame');
+		console.log('initGame',cc.winSize);
 		var manager = cc.director.getCollisionManager();
 		manager.enabled = true;
 		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
@@ -67,7 +67,9 @@ cc.Class({
 		}
 		this.zaw = cc.instantiate(GlobalData.assets['zhangaiwus']);
 		this.node.addChild(this.zaw);
-		this.zaw.position = cc.v2(366,36);
+		var nSize = this.node.getContentSize();
+		var zawSize = this.zaw.getContentSize();
+		this.zaw.position = cc.v2(nSize.width/2 + zawSize.width/2 + 5,36);
 		this.zaw.active = true;
 		var stepNum = GlobalData.runTime.gameStep * GlobalData.cdnParam.stepNum;
 		//添加五角星
@@ -108,9 +110,10 @@ cc.Class({
 			var yy = Math.random() * size.height/2 * (Math.random() > 0.5 ? 1: -1);
 			
 			this.zaw.addChild(prop);
-			prop.setPosition(cc.v2(-320,yy));
+			prop.setPosition(cc.v2(-zawSize.width - prop.getContentSize().width,yy));
 		}
-		this.zaw.runAction(cc.repeatForever(cc.moveBy(0.01,cc.v2(-2,0))));
+		var movePs = (nSize.width / 8 ) + (GlobalData.gameConf.propUps + GlobalData.gameConf.propPower - 1) * 10;
+		this.zaw.runAction(cc.repeatForever(cc.moveBy(1,cc.v2(movePs * -1,0))));
 		this.flag = true;
 		GlobalData.runTime.gameStep += 1;
 	},
@@ -130,7 +133,7 @@ cc.Class({
 		this.flag = false;
     },
 	pauseGame(){
-		this.zaw.stopAllActions();
+		this.zaw.pauseAllActions();
 		GlobalData.runTime.gameStatus = 2;
 		if(this.gameTanke){
 			this.gameTanke.getComponent('tanke').pauseGame();
@@ -157,8 +160,9 @@ cc.Class({
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
 	},
 	continueGame(){
+		var nSize = this.node.getContentSize();
 		GlobalData.runTime.gameStatus = 1;
-		this.zaw.runAction(cc.repeatForever(cc.moveBy(0.01,cc.v2(-2,0))));
+		this.zaw.resumeAllActions();
 		this.flag = true;
 		this.gameTanke.getComponent('tanke').startGame();
 		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
@@ -210,7 +214,10 @@ cc.Class({
     update: function (dt) {
 		var self = this;
 		this.scoreNode.getComponent(cc.Label).string = GlobalData.runTime.curScore;
-		if(this.flag == true && this.zaw.x <= -400 && GlobalData.runTime.gameStatus == 1){
+		var nSize = this.node.getContentSize();
+		var zawSize = this.zaw.getContentSize();
+		var fWidth = (nSize.width/2 + zawSize.width/2 + 5) * -1;
+		if(this.flag == true && this.zaw.x <= fWidth && GlobalData.runTime.gameStatus == 1){
 			this.flag = false;
 			setTimeout(function(){
 				self.freshZaw();

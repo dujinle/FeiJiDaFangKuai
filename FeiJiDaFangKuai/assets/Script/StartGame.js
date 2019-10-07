@@ -13,6 +13,7 @@ cc.Class({
 		powerLabel:cc.Node,
 		powerLevel:cc.Node,
 		powerBtn:cc.Node,
+		startBtn:cc.Node,
     },
 
     onLoad () {

@@ -1925,8 +1925,8 @@
     "target": {
       "__id__": 7
     },
-    "component": "StartGame",
-    "_componentId": "",
+    "component": "",
+    "_componentId": "8e910tCAFNBu7Eo1gh17JOK",
     "handler": "startButtonCb",
     "customEventData": ""
   },
@@ -3070,6 +3070,9 @@
     },
     "powerBtn": {
       "__id__": 54
+    },
+    "startBtn": {
+      "__id__": 35
     },
     "_id": "a0w4KVbOhDIbDAe2CwCALM"
   },
@@ -7337,8 +7340,8 @@
       "width": 640,
       "height": 1136
     },
-    "_fitWidth": false,
-    "_fitHeight": true,
+    "_fitWidth": true,
+    "_fitHeight": false,
     "_id": "6f5cteKmlPh6NGUsUqxlFR"
   },
   {
