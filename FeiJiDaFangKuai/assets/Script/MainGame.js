@@ -1,5 +1,4 @@
 var util = require('util');
-var WxBannerAd = require('WxBannerAd');
 cc.Class({
     extends: cc.Component,
 
@@ -7,15 +6,17 @@ cc.Class({
 		scoreNode:cc.Node,
 		propIcon:cc.Node,
 		bottomLine:cc.Node,
+		touchRegion:cc.Node,
+		gameTip:cc.Node,
 		flag:false,
     },
 	initGame(){
 		console.log('initGame',cc.winSize);
 		var manager = cc.director.getCollisionManager();
 		manager.enabled = true;
-		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
-		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
-		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
 		this.gameTanke = cc.instantiate(GlobalData.assets['tanke']);
 		this.node.addChild(this.gameTanke);
 		this.gameTanke.position = cc.v2(-260,0);
@@ -25,13 +26,17 @@ cc.Class({
 		//随机初始化一个肤色
 		GlobalData.runTime.particleSkin = util.getRandomNum(GlobalData.ParticleConf.length);
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
-		//添加广告位
-		var sizeHeight = cc.winSize.height;
-		var bottomLinePos = this.bottomLine.getPosition();
-		//向下移 10个像素 不要挨得最下面的节点太近
-		var yy = Math.abs(bottomLinePos.y) +  this.bottomLine.getContentSize().height/2 + sizeHeight/2;
-		var yRate = 1 - yy/sizeHeight;
-		WxBannerAd.createBannerAd(yRate);
+		this.showTip();
+	},
+	showTip(){
+		//显示游戏提示信息
+		if(GlobalData.runTime.gameGuide == 0){
+			this.gameTip.zIndex = 6;
+			this.gameTip.getComponent('gameTip').onShow();
+			this.gameTanke.getComponent('tanke').pauseDown(false);
+		}else{
+			this.gameTip.getComponent('gameTip').onClose();
+		}
 	},
 	showAnimate(type,time){
 		var ani = cc.instantiate(GlobalData.assets['actionLabel']);
@@ -123,6 +128,11 @@ cc.Class({
 		}
 	},
 	tankeJump(){
+		if(GlobalData.runTime.gameGuide == 0){
+			this.gameTip.getComponent('gameTip').onClose();
+			GlobalData.runTime.gameGuide = 1;
+			this.gameTanke.getComponent('tanke').pauseDown(true);
+		}
 		if(this.gameTanke){
 			this.gameTanke.getComponent('tanke').Jump();
 		}
@@ -132,6 +142,11 @@ cc.Class({
 		console.log('onLoad');
 		this.flag = false;
     },
+	pauseGameBtn(event){
+		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
+		GlobalData.game.pauseGame.getComponent('PauseGame').showPause();
+		this.pauseGame();
+	},
 	pauseGame(){
 		this.zaw.pauseAllActions();
 		GlobalData.runTime.gameStatus = 2;
@@ -154,9 +169,9 @@ cc.Class({
 		this.gameTanke.position = cc.v2(-260,0);
 		this.gameTanke.active = true;
 		this.gameTanke.getComponent('tanke').startGame();
-		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
-		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
-		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
 	},
 	continueGame(){
@@ -165,9 +180,9 @@ cc.Class({
 		this.zaw.resumeAllActions();
 		this.flag = true;
 		this.gameTanke.getComponent('tanke').startGame();
-		this.node.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
-		this.node.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
-		this.node.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
+		this.touchRegion.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
 		GlobalData.game.audioManager.getComponent('AudioManager').playGameBg();
 	},
 	destroyGame(){
@@ -177,6 +192,10 @@ cc.Class({
 		if(GlobalData.buttles != null){
 			GlobalData.buttles.clear()
 		}
+		if(this.gameTanke != null){
+			this.gameTanke.removeFromParent();
+			this.gameTanke.destroy();
+		}
 		this.zaw.stopAllActions();
 		this.zaw.removeFromParent();
 		this.zaw.destroy();
@@ -184,9 +203,9 @@ cc.Class({
 		this.touchOff();
 	},
 	touchOff(){
-		this.node.off(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
-		this.node.off(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
-		this.node.off(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
+		this.touchRegion.off(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
+		this.touchRegion.off(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
+		this.touchRegion.off(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);
 	},
 	updateProp(propType){
 		if(propType == 1){//ups

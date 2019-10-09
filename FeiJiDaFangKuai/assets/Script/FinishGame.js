@@ -39,11 +39,13 @@ cc.Class({
 		GlobalData.runTime.gameStatus = 0;
 		GlobalData.gameConf.curScore += GlobalData.runTime.curScore;
 		ThirdAPI.updataGameInfo();
-		WxBannerAd.destroyBannerAd();
+		//添加广告位
+		WxBannerAd.createBannerAd();
+		
 	},
 	rankButtonCb(){
 		this.isDraw = false;
-		WxBannerAd.destroyBannerAd();
+		WxBannerAd.hideBannerAd();
 		GlobalData.game.rankGame.getComponent('RankGame').show();
 	},
 	restartButtonCb(){
@@ -53,6 +55,7 @@ cc.Class({
 		GlobalData.game.mainGame.active = false;
 		this.isDraw = false;
 		this.node.active = false;
+		WxBannerAd.destroyBannerAd();
 	},
 	shareToFriends(){
 		var param = {

@@ -9,6 +9,7 @@ cc.Class({
 		finishGame:cc.Node,
 		rankGame:cc.Node,
 		helpGame:cc.Node,
+		pauseGame:cc.Node,
 		fuhuoGame:cc.Node,
 		audioManager:cc.Node,
     },
@@ -23,6 +24,7 @@ cc.Class({
 		this.finishGame.active = false;
 		this.rankGame.active = false;
 		this.helpGame.active = false;
+		this.pauseGame.active = false;
 		this.fuhuoGame.active = false;
 		util.customScreenAdapt(this);
     },

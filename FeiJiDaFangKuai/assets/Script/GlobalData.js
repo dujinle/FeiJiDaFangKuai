@@ -30,6 +30,7 @@ GlobalData = {
 		AudioPlayNum:0,
 		audioSupport:1,
 		shootNum:1,
+		gameGuide:0,
 		shootSpeed:0.5,
 		shootPowder:1,
 		gameStatus:0,

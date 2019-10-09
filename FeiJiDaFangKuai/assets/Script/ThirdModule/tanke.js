@@ -22,6 +22,13 @@ cc.Class({
 		this.schedule(this.moveDown,0.01);
 		this.schedule(this.shoot,GlobalData.runTime.shootSpeed);
 	},
+	pauseDown(flag){
+		if(flag == false){
+			this.unschedule(this.moveDown);
+		}else{
+			this.schedule(this.moveDown,0.01);
+		}
+	},
 	pauseGame(){
 		if(this.node != null){
 			this.unschedule(this.moveDown);
@@ -55,10 +62,9 @@ cc.Class({
 		if(GlobalData.runTime.gameStatus != 1){
 			return;
 		}
-		this.node.destroy();
+		GlobalData.game.mainGame.getComponent('MainGame').pauseGame();
 		if(GlobalData.runTime.jushu >= GlobalData.cdnParam.reliveConf.lock && GlobalData.runTime.reliveFlag == 0){
 			if(Math.random() <= GlobalData.cdnParam.reliveConf.rate){
-				GlobalData.game.mainGame.getComponent('MainGame').pauseGame();
 				if(Math.random() <= GlobalData.cdnParam.videoRate){
 					GlobalData.game.fuhuoGame.getComponent('ReliveGame').waitCallBack('DJAV');
 				}else{
@@ -70,6 +76,7 @@ cc.Class({
 		}else{
 			GlobalData.game.finishGame.getComponent('FinishGame').show();
 		}
+		this.node.destroy();
 	},
 	resumeDown(){
 		this.jumpFlag = false;
