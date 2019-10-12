@@ -30,7 +30,7 @@ cc.Class({
 	},
 	showTip(){
 		//显示游戏提示信息
-		if(GlobalData.runTime.gameGuide == 0){
+		if(GlobalData.runTime.gameGuide == null ||GlobalData.runTime.gameGuide == 0){
 			this.gameTip.zIndex = 6;
 			this.gameTip.getComponent('gameTip').onShow();
 			this.gameTanke.getComponent('tanke').pauseDown(false);
@@ -76,16 +76,18 @@ cc.Class({
 		var zawSize = this.zaw.getContentSize();
 		this.zaw.position = cc.v2(nSize.width/2 + zawSize.width/2 + 5,36);
 		this.zaw.active = true;
-		var stepNum = GlobalData.runTime.gameStep * GlobalData.cdnParam.stepNum;
+		var stepNum = (GlobalData.runTime.gameStep) * GlobalData.cdnParam.stepNum;
 		//添加五角星
 		var iconX = -1;
 		if(GlobalData.runTime.gameStep % GlobalData.cdnParam.xingNum == 0){
+		//if(GlobalData.runTime.gameStep % 2 == 0){
 			iconX = Math.floor(Math.random() * this.zaw.children.length);
 		}
 		for(var i = 0;i < this.zaw.children.length;i++){
 			let zaw1 = this.zaw.children[i];
 			zaw1.active = true;
 			var num = util.getRandomNum(stepNum);
+			num = num + (GlobalData.gameConf.propUps + GlobalData.gameConf.propPower - 1) * 3;
 			zaw1.getComponent('zhangaiwu').setNum(num);
 			if(iconX != -1 && iconX == i){
 				zaw1.getComponent('zhangaiwu').wuxing.active = true;
@@ -98,6 +100,7 @@ cc.Class({
 			}else if(xuxTypeRate <= GlobalData.cdnParam.wuxingRate.shootNum){
 				zaw1.getComponent('zhangaiwu').wuxingType = 3;
 			}
+			//zaw1.getComponent('zhangaiwu').wuxingType = 2;
 		}
 		
 		//添加道具
@@ -212,6 +215,9 @@ cc.Class({
 			//增加子弹速度
 			GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed - 0.05;
 			GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed + 100;
+			if(GlobalData.runTime.shootSpeed <= 0){
+				GlobalData.runTime.shootSpeed = 0.001;
+			}
 			setTimeout(function(){
 				GlobalData.runTime.shootSpeed = GlobalData.runTime.shootSpeed + 0.05;
 				GlobalData.runTime.buttleSpeed = GlobalData.runTime.buttleSpeed - 100;

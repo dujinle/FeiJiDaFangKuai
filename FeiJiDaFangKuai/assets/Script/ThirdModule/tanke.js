@@ -2,8 +2,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-		upSpeed:300,
-		downSpeed:300,
+		upInitSpeed:150,
+		downInitSpeed:150,
 		jumpFlag:false,
 		sprite:cc.Node,
 		jumpTime:0,
@@ -13,14 +13,21 @@ cc.Class({
     onLoad () {
 		this.jumpTime = 0;
 		this.collider = this.node.getComponent(cc.BoxCollider);
+		var rate = (GlobalData.gameConf.propUps + GlobalData.gameConf.propPower - 1) * 10;
+		this.downSpeed = this.downInitSpeed + rate;
+		this.upSpeed = this.upInitSpeed + rate;
 	},
 	startGame(){
 		if(GlobalData.buttles == null){
 			GlobalData.buttles = new cc.NodePool();
 		}
 		this.node.active = true;
+		var rate = (GlobalData.gameConf.propUps + GlobalData.gameConf.propPower - 1) * 10;
+		this.downSpeed = this.downInitSpeed + rate;
+		this.upSpeed = this.upInitSpeed + rate;
 		this.schedule(this.moveDown,0.01);
 		this.schedule(this.shoot,GlobalData.runTime.shootSpeed);
+		console.log(this.downSpeed,this.upSpeed);
 	},
 	pauseDown(flag){
 		if(flag == false){

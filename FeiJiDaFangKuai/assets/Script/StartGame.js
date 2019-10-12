@@ -37,26 +37,30 @@ cc.Class({
 	initProp(){
 		this.upLevel.getComponent(cc.Label).string = GlobalData.gameConf.propUps;
 		this.powerLevel.getComponent(cc.Label).string = GlobalData.gameConf.propPower;
-		this.upLabel.getComponent(cc.Label).string = GlobalData.gameConf.propUps * 190;
-		this.powerLabel.getComponent(cc.Label).string = GlobalData.gameConf.propPower * 190;
-		if(GlobalData.gameConf.curScore >= GlobalData.gameConf.propPower * 190){
+		var upL = GlobalData.gameConf.propUps * GlobalData.gameConf.propUps * 190;
+		var powerL = GlobalData.gameConf.propPower * GlobalData.gameConf.propPower * 190;
+		this.upLabel.getComponent(cc.Label).string = upL;
+		this.powerLabel.getComponent(cc.Label).string = powerL;
+		if(GlobalData.gameConf.curScore >= powerL){
 			this.powerBtn.getComponent(cc.Button).interactable = true;
 		}else{
 			this.powerBtn.getComponent(cc.Button).interactable = false;
 		}
-		if(GlobalData.gameConf.curScore >= GlobalData.gameConf.propUps * 190){
+		if(GlobalData.gameConf.curScore >= upL){
 			this.upBtn.getComponent(cc.Button).interactable = true;
 		}else{
 			this.upBtn.getComponent(cc.Button).interactable = false;
 		}
 	},
 	upAdd(){
-		GlobalData.gameConf.curScore -= GlobalData.gameConf.propUps * 190;
+		var upL = GlobalData.gameConf.propUps * GlobalData.gameConf.propUps * 190;
+		GlobalData.gameConf.curScore -= upL;
 		GlobalData.gameConf.propUps += 1;
 		this.initProp();
 	},
 	powerAdd(){
-		GlobalData.gameConf.curScore -= GlobalData.gameConf.propPower * 190;
+		var powerL = GlobalData.gameConf.propPower * GlobalData.gameConf.propPower * 190;
+		GlobalData.gameConf.curScore -= powerL;
 		GlobalData.gameConf.propPower += 1;
 		this.initProp();
 	},
@@ -73,6 +77,9 @@ cc.Class({
 		GlobalData.runTime.reliveFlag = 0;
 		GlobalData.runTime.shootNum = GlobalData.gameConf.shootNum;
 		GlobalData.runTime.shootSpeed = GlobalData.gameConf.shootSpeed - ((GlobalData.gameConf.propUps -1) * 0.05);
+		if(GlobalData.runTime.shootSpeed <= 0){
+			GlobalData.runTime.shootSpeed = 0.001;
+		}
 		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed + ((GlobalData.gameConf.propUps - 1)* 100);
 		GlobalData.runTime.shootPowder = GlobalData.gameConf.shootPowder + (GlobalData.gameConf.propPower - 1);
 		
