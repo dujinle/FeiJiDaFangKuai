@@ -1,10 +1,12 @@
 var WxChaAd = require('WxChaAd');
+var WxPortal = require('WxPortal');
 cc.Class({
     extends: cc.Component,
 
     properties: {
 		gotoHomeButton:cc.Node,
 		returnGame:cc.Node,
+		bannerType:0,
     },
 	onLoad(){
 		this.node.on(cc.Node.EventType.TOUCH_START,function(e){
@@ -31,15 +33,39 @@ cc.Class({
 		this.node.active = true;
 		this.returnGame.getComponent(cc.Button).interactable = false;
 		this.gotoHomeButton.getComponent(cc.Button).interactable = false;
-		WxChaAd.createChaAd(function(res){
-			if(res == 'error'){
-				self.returnGame.getComponent(cc.Button).interactable = true;
-				self.gotoHomeButton.getComponent(cc.Button).interactable = true;
-			}else if(res == 'close'){
-				self.returnGame.getComponent(cc.Button).interactable = true;
-				self.gotoHomeButton.getComponent(cc.Button).interactable = true;
-			}
-		});
+		//添加广告位
+		if(Math.random() > GlobalData.cdnParam.showADTJRate){
+			this.bannerType = 0;
+			WxChaAd.createChaAd(function(res){
+				if(res == 'error'){
+					self.returnGame.getComponent(cc.Button).interactable = true;
+					self.gotoHomeButton.getComponent(cc.Button).interactable = true;
+				}else if(res == 'close'){
+					self.returnGame.getComponent(cc.Button).interactable = true;
+					self.gotoHomeButton.getComponent(cc.Button).interactable = true;
+				}
+			});
+		}else{
+			this.bannerType = 1;
+			WxPortal.createAd(3,(err)=>{
+				if(err == 'error'){
+					this.bannerType = 0;
+					WxChaAd.createChaAd(function(res){
+						if(res == 'error'){
+							self.returnGame.getComponent(cc.Button).interactable = true;
+							self.gotoHomeButton.getComponent(cc.Button).interactable = true;
+						}else if(res == 'close'){
+							self.returnGame.getComponent(cc.Button).interactable = true;
+							self.gotoHomeButton.getComponent(cc.Button).interactable = true;
+						}
+					});
+				}else if(err == 'close'){
+					self.returnGame.getComponent(cc.Button).interactable = true;
+					self.gotoHomeButton.getComponent(cc.Button).interactable = true;
+				}
+			});
+		}
+		
 	},
 	hidePause(){
 		console.log("start game board hide");

@@ -195,7 +195,7 @@ cc.Class({
 		if(GlobalData.buttles != null){
 			GlobalData.buttles.clear()
 		}
-		if(this.gameTanke != null){
+		if(this.gameTanke != null && this.gameTanke.isValid){
 			this.gameTanke.removeFromParent();
 			this.gameTanke.destroy();
 		}

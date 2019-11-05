@@ -104,6 +104,7 @@ cc.Class({
 		var self = this;
 		this.node.active = true;
 		this.openType = prop;
+		this.cancleLabel.active = false;
 		if(this.openType == 'DJShare'){
 			this.openSprite.getComponent(cc.Sprite).spriteFrame = GlobalData.assets['share'];
 		}else if(this.openType == 'DJAV'){

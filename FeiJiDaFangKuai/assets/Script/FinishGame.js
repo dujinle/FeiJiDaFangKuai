@@ -65,17 +65,17 @@ cc.Class({
 		GlobalData.game.rankGame.getComponent('RankGame').show('finish',this.bannerType);
 	},
 	restartButtonCb(){
+		if(this.bannerType == 0){
+			WxBannerAd.destroyBannerAd();
+		}else{
+			WxPortal.destroyBannerAd(2);
+		}
 		GlobalData.game.audioManager.getComponent("AudioManager").play(GlobalData.AudioManager.ButtonClick);
 		GlobalData.game.startGame.getComponent('StartGame').onShow();
 		GlobalData.game.mainGame.getComponent('MainGame').destroyGame();
 		GlobalData.game.mainGame.active = false;
 		this.isDraw = false;
 		this.node.active = false;
-		if(this.bannerType == 0){
-			WxBannerAd.destroyBannerAd();
-		}else{
-			WxPortal.destroyBannerAd(2);
-		}
 	},
 	shareToFriends(){
 		var param = {

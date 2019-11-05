@@ -1,4 +1,6 @@
 var ThirdAPI = require('ThirdAPI');
+var WxPortal = require('WxPortal');
+var WxBannerAd = require('WxBannerAd');
 cc.Class({
     extends: cc.Component,
 
@@ -34,7 +36,7 @@ cc.Class({
 				WxPortal.showBannerAd(2);
 			}
 		}else if(this.scene == 'start'){
-			WxPortal.showBannerAd(2);
+			WxPortal.showBannerAd(1);
 		}
 	},
 	show(scene,adType){

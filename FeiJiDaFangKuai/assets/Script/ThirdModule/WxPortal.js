@@ -10,6 +10,7 @@ let WxPortal = {
             var sysInfo = wx.getSystemInfoSync();
             console.log('sysinfo: ', sysInfo);
             if (sysInfo && sysInfo.SDKVersion && sysInfo.SDKVersion !== '' && sysInfo.SDKVersion.slice(0, 5).replace(/\./g, "") >= 275) {
+				var version = sysInfo.SDKVersion.slice(0, 5).replace(/\./g, "");
 				if (!GlobalData.cdnParam.refreshBanner) {
                     console.log('不刷新推荐位');
                     this.showBannerAd(type);
@@ -41,7 +42,10 @@ let WxPortal = {
 					else if(type == 1){
 						// 定义icon推荐位
 						// 创建推荐位实例，提前初始化
-						if (wx.createGameIcon) {
+						console.log('iconAd creat check',version);
+						//这里做一下判断吧 因为 需要版本超过2.8.2
+						if (version >= 282 && wx.createGameIcon) {
+							console.log('iconAd creat start');
 							this.iconAd = wx.createGameIcon({
 								adUnitId: 'PBgAAtHnuk825clY',
 								count:3,
@@ -78,10 +82,12 @@ let WxPortal = {
 						// 在合适的场景显示推荐位
 						// err.errCode返回1004时表示当前没有适合推荐的内容，建议游戏做兼容，在返回该错误码时展示其他内容
 						if (this.iconAd) {
+							console.log('iconAd creat success');
 							this.iconAd.load().then(() => {
+								console.log('iconAd load success');
 								this.iconAd.show()
 							}).catch((err) => {
-								console.error(err)
+								console.log(err)
 								cb('error');
 							})
 						}
@@ -104,13 +110,19 @@ let WxPortal = {
 								console.error(err)
 								cb('error');
 							})
+							this.portalAd.onClose(res => {
+								console.log('插屏 广告关闭')
+								this.portalAd = null;
+								cb('close');
+							});
 						}
 					}
 				}catch (error) {
 					console.log(error);
 					cb('error');
 				}
-			}else {
+			}
+			else {
 				console.log('SDKVersion 判断基础库版本号 >= 2.7.5 后再使用该 API');
 				cb('error');
 			}
@@ -151,25 +163,51 @@ let WxPortal = {
 		}
     },
 	destroyBannerAd(type){
-		let ad = this.iconAd;
-		if(type == 2){
-			ad = this.bannerAd;
+		if(type == 1){
+			if (this.iconAd) {
+				console.log('destroyBannerAd',type);
+				this.iconAd.hide();
+				if (!GlobalData.cdnParam.refreshBanner) {
+					return;
+				}
+				try {
+					this.iconAd.destroy();
+					this.iconAd = null;
+				} catch (error) {
+					this.iconAd = null;
+				}
+			}
 		}
-		if(type == 3){
-			ad = this.portalAd;
+		else if(type == 2){
+			if (this.bannerAd) {
+				console.log('destroyBannerAd',type);
+				this.bannerAd.hide();
+				if (!GlobalData.cdnParam.refreshBanner) {
+					return;
+				}
+				try {
+					this.bannerAd.destroy();
+					this.bannerAd = null;
+				} catch (error) {
+					this.bannerAd = null;
+				}
+			}
 		}
-		if (ad) {
-			ad.hide();
-            if (!GlobalData.cdnParam.refreshBanner) {
-                return;
-            }
-            try {
-                ad.destroy();
-                ad = null;
-            } catch (error) {
-                ad = null;
-            }
-        }
+		else if(type == 3){
+			if (this.portalAd) {
+				console.log('destroyBannerAd',type);
+				this.portalAd.hide();
+				if (!GlobalData.cdnParam.refreshBanner) {
+					return;
+				}
+				try {
+					this.portalAd.destroy();
+					this.portalAd = null;
+				} catch (error) {
+					this.portalAd = null;
+				}
+			}
+		}
 	}
 }
 
