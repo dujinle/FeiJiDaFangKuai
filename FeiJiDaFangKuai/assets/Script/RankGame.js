@@ -3,6 +3,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+		scene:null,
+		adType:0,
 		rankSprite:cc.Node,
 		isDraw:false,
     },
@@ -24,9 +26,21 @@ cc.Class({
 	onClose(){
 		this.isDraw = false;
 		this.node.active = false;
+		//从结束界面跳转过来的
+		if(this.scene == 'finish'){
+			if(this.adType == 0){
+				WxBannerAd.showBannerAd();
+			}else{
+				WxPortal.showBannerAd(2);
+			}
+		}else if(this.scene == 'start'){
+			WxPortal.showBannerAd(2);
+		}
 	},
-	show(){
+	show(scene,adType){
 		console.log("rank game show");
+		this.scene = scene;
+		this.adType = adType;
 		this.isDraw = true;
 		this.node.active = true;
 		var param = {

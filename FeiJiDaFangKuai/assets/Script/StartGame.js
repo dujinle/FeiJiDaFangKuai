@@ -1,4 +1,5 @@
 var ThirdAPI = require('ThirdAPI');
+var WxPortal = require('WxPortal');
 cc.Class({
     extends: cc.Component,
 
@@ -33,6 +34,9 @@ cc.Class({
 		}
 		this.scoreLabel.getComponent(cc.Label).string = GlobalData.gameConf.curScore;
 		this.initProp();
+		WxPortal.createAd(1,(err)=>{
+			console.log(err);
+		})
 	},
 	initProp(){
 		this.upLevel.getComponent(cc.Label).string = GlobalData.gameConf.propUps;
@@ -83,6 +87,7 @@ cc.Class({
 		GlobalData.runTime.buttleSpeed = GlobalData.gameConf.buttleSpeed + ((GlobalData.gameConf.propUps - 1)* 100);
 		GlobalData.runTime.shootPowder = GlobalData.gameConf.shootPowder + (GlobalData.gameConf.propPower - 1);
 		
+		WxPortal.destroyBannerAd(1);
 		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
 		GlobalData.game.mainGame.active = true;
 		GlobalData.game.mainGame.getComponent('MainGame').initGame();
@@ -111,8 +116,9 @@ cc.Class({
 		ThirdAPI.shareGame(param);
 	},
 	rankButtonCb(){
+		WxPortal.hideAd(1);
 		GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.ButtonClick);
-		GlobalData.game.rankGame.getComponent('RankGame').show();
+		GlobalData.game.rankGame.getComponent('RankGame').show('start',1);
 	},
 	shareSuccessCb(type, shareTicket, arg){
 		if(arg == 'budaoStart'){

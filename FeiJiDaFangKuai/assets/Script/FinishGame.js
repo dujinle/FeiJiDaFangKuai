@@ -1,9 +1,11 @@
 var ThirdAPI = require('ThirdAPI');
 var WxBannerAd = require('WxBannerAd');
+var WxPortal = require('WxPortal');
 cc.Class({
     extends: cc.Component,
 
     properties: {
+		bannerType:0,//0 显示广告 1 显示推荐位
 		rankSprite:cc.Node,
 		isDraw:false,
 		reStartSprite:cc.Node,
@@ -40,13 +42,27 @@ cc.Class({
 		GlobalData.gameConf.curScore += GlobalData.runTime.curScore;
 		ThirdAPI.updataGameInfo();
 		//添加广告位
-		WxBannerAd.createBannerAd();
-		
+		if(Math.random() > GlobalData.cdnParam.showADTJRate){
+			this.bannerType = 0;
+			WxBannerAd.createBannerAd();
+		}else{
+			this.bannerType = 1;
+			WxPortal.createAd(2,(err)=>{
+				if(err == 'error'){
+					this.bannerType = 0;
+					WxBannerAd.createBannerAd();
+				}
+			});
+		}
 	},
 	rankButtonCb(){
 		this.isDraw = false;
-		WxBannerAd.hideBannerAd();
-		GlobalData.game.rankGame.getComponent('RankGame').show();
+		if(this.bannerType == 0){
+			WxBannerAd.hideBannerAd();
+		}else{
+			WxPortal.hideAd(2);
+		}
+		GlobalData.game.rankGame.getComponent('RankGame').show('finish',this.bannerType);
 	},
 	restartButtonCb(){
 		GlobalData.game.audioManager.getComponent("AudioManager").play(GlobalData.AudioManager.ButtonClick);
@@ -55,7 +71,11 @@ cc.Class({
 		GlobalData.game.mainGame.active = false;
 		this.isDraw = false;
 		this.node.active = false;
-		WxBannerAd.destroyBannerAd();
+		if(this.bannerType == 0){
+			WxBannerAd.destroyBannerAd();
+		}else{
+			WxPortal.destroyBannerAd(2);
+		}
 	},
 	shareToFriends(){
 		var param = {

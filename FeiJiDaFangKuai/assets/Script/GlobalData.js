@@ -55,8 +55,9 @@ GlobalData = {
 			rate:1,
 			lock:1
 		},
-		videoRate:1,//复活视频概率
-		propRate:0.5,
+		videoRate:1,	//复活视频概率
+		propRate:0.5,	//随机道具获取概率
+		showADTJRate:1,//大于概率则显示广告 ，小于则显示推荐位
 		wuxingRate:{
 			ups:0.4,
 			power:0.8,
