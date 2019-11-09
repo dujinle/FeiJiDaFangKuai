@@ -6,6 +6,7 @@ cc.Class({
 		downInitSpeed:150,
 		jumpFlag:false,
 		sprite:cc.Node,
+		touchFlag:0, //1, 上部 2,下部
 		jumpTime:0,
 		particle:cc.ParticleSystem,
 		collider:null,
@@ -16,11 +17,15 @@ cc.Class({
 		var rate = (GlobalData.gameConf.propUps + GlobalData.gameConf.propPower - 1) * 10;
 		this.downSpeed = this.downInitSpeed + rate;
 		this.upSpeed = this.upInitSpeed + rate;
+		this.size = this.node.getContentSize();
+		this.touchFlag = 0;
 	},
 	startGame(){
+		this.manager = cc.director.getCollisionManager();
 		if(GlobalData.buttles == null){
 			GlobalData.buttles = new cc.NodePool();
 		}
+		this.touchFlag = 0;
 		this.node.active = true;
 		var rate = (GlobalData.gameConf.propUps + GlobalData.gameConf.propPower - 1) * 10;
 		this.downSpeed = this.downInitSpeed + rate;
@@ -46,6 +51,10 @@ cc.Class({
 	moveDown(dt){
 		//这里有可能已经销毁node了
 		if(this.node == null){
+			return;
+		}
+		//碰到了下部了不可以下降了
+		if(this.touchFlag == 2){
 			return;
 		}
 		this.node.y -= this.downSpeed * dt;
@@ -120,8 +129,16 @@ cc.Class({
 		if(other.tag == 1){
 			return;
 		}
+		//碰到障碍物 上部
+		if(other.tag == 3 && self.tag == 2){
+			this.touchFlag = 1;
+		}
+		//碰到障碍物 下部
+		if(other.tag == 3 && self.tag == 5){
+			this.touchFlag = 2;
+		}
 		//碰到障碍物 销毁
-		if(other.tag == 3){
+		if(other.tag == 3 && self.tag == 4){
 			this.collider.enabled = false;
 			GlobalData.game.audioManager.getComponent('AudioManager').play(GlobalData.AudioManager.Bomb);
 			GlobalData.game.mainGame.getComponent('MainGame').touchOff();
@@ -133,12 +150,27 @@ cc.Class({
 				this.reliveGame();
 			},500);
 		}
+		
     },
+	onCollisionExit(other,self){
+		//碰到障碍物 上部
+		if(other.tag == 3 && self.tag == 2){
+			this.touchFlag = 0;
+		}
+		//碰到障碍物 下部
+		if(other.tag == 3 && self.tag == 5){
+			this.touchFlag = 0;
+		}
+	},
 	update(dt){
 		if(this.collider.enabled == false){
 			return;
 		}
 		if(this.jumpFlag == false){
+			return;
+		}
+		//碰到了上部了不可以上升了
+		if(this.touchFlag == 1){
 			return;
 		}
 		this.jumpTime += dt;

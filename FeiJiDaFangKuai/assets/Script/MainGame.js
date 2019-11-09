@@ -12,8 +12,8 @@ cc.Class({
     },
 	initGame(){
 		console.log('initGame',cc.winSize);
-		var manager = cc.director.getCollisionManager();
-		manager.enabled = true;
+		this.manager = cc.director.getCollisionManager();
+		this.manager.enabled = true;
 		this.touchRegion.on(cc.Node.EventType.TOUCH_START,this.tankeJump,this);
 		this.touchRegion.on(cc.Node.EventType.TOUCH_END,this.tankeEnd,this);
 		this.touchRegion.on(cc.Node.EventType.TOUCH_CANCLE,this.tankeEnd,this);

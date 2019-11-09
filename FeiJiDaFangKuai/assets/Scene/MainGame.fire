@@ -408,7 +408,7 @@
         "__id__": 43
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 1,
     "_components": [
       {
@@ -6292,6 +6292,7 @@
       "__id__": 115
     },
     "_enabled": true,
+    "bannerType": 0,
     "rankSprite": {
       "__id__": 127
     },
@@ -7113,6 +7114,8 @@
       "__id__": 140
     },
     "_enabled": true,
+    "scene": null,
+    "adType": 0,
     "rankSprite": {
       "__id__": 146
     },
@@ -8940,6 +8943,7 @@
     "returnGame": {
       "__id__": 187
     },
+    "bannerType": 0,
     "_id": "05vYM6zoBHsKESLPvMd0Nw"
   },
   {
