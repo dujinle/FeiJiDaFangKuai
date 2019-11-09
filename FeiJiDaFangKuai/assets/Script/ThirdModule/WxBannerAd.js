@@ -41,8 +41,6 @@ let WxBannerAd = {
 						});
 
 						this.bannerAd.onResize(res => {
-							console.log("banner onResize res:", res.width, res.height)
-							console.log("banner onResize style real:", this.bannerAd.style.realWidth, this.bannerAd.style.realHeight)
 							if (self.bannerAd && self.bannerAd.style) {
 								// 适配iphoneX
 								var fitOffsetY = GlobalData.phoneModel == 'Normal' ? 0:0.01;
